@@ -65,48 +65,27 @@ To run benchmark, please click `waifu2x-gui` -> `Benchmark`
 
 ![screenshot](screenshot-v1.5-benchmark.png)
 
-### Build Instructions
-Download lastest Vulkan SDK at [https://vulkan.lunarg.com/sdk/home](https://vulkan.lunarg.com/sdk/home).
+### Build Instructions (macOS arm64)
 
-At the time of this README.md wrote, 1.2.131.2 was the newest version for macOS.
+Download lastest Vulkan SDK at [https://vulkan.lunarg.com/sdk/home#mac](https://vulkan.lunarg.com/sdk/home#mac).
+
+At the time of this README.md wrote, 1.3.250.1 was the newest version for macOS.
+
+Copy VulkanSDK/1.3.250.1 (or other version) as waifu2x-ncnn-vulkan-macos/waifu2x/VulkanSDK
 
 ```bash
-brew install protobuf
+brew install protobuf libomp
+
+# if you have installed libomp before, you may need to force link it
+brew link --force libomp
 
 # clone this repo first
-git clone --depth=1 https://github.com/BlueCocoa/waifu2x-ncnn-vulkan-macos
-
-# download lastest Vulkan SDK
-export VULKAN_SDK_VER="1.2.131.2"
-wget https://sdk.lunarg.com/sdk/download/${VULKAN_SDK_VER}/mac/vulkansdk-macos-${VULKAN_SDK_VER}.tar.gz?Human=true -O vulkansdk-macos-${VULKAN_SDK_VER}.tar.gz
-tar xf vulkansdk-macos-${VULKAN_SDK_VER}.tar.gz
-rm -rf waifu2x-ncnn-vulkan-macos/waifu2x/VulkanSDK
-mv vulkansdk-macos-${VULKAN_SDK_VER} waifu2x-ncnn-vulkan-macos/waifu2x/VulkanSDK
-
-# clone Tencent/ncnn
-git clone --depth=1 https://github.com/Tencent/ncnn ncnn
-
-# clone nihui/waifu2x-ncnn-vulkan
-# (At the time of writing) https://github.com/nihui/waifu2x-ncnn-vulkan/tree/4b626f8d4a1f8ce331aa4678d93d3628d9670361
-rm -rf waifu2x-ncnn-vulkan-macos/waifu2x/waifu2x-ncnn-vulkan
-git clone --depth=1 https://github.com/nihui/waifu2x-ncnn-vulkan waifu2x-ncnn-vulkan-macos/waifu2x/waifu2x-ncnn-vulkan
+git clone --recursive --depth=1 https://github.com/BlueCocoa/waifu2x-ncnn-vulkan-macos
 
 # check your cmake installation
 which cmake
-# if it goes with /Applications/CMake.app/Contents/bin/cmake
-# then you need to install it in /usr/local/bin via follow command
-sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
 
-# build ncnn
-rm -rf ncnn/build && mkdir -p ncnn/build && pushd ncnn/build
-cmake -DNCNN_VULKAN=ON -D CMAKE_BUILD_TYPE=Release ..
-make -j`sysctl -n hw.ncpu` && make install
-cp -rf install/* ../../waifu2x-ncnn-vulkan-macos/waifu2x/ncnn
-
-# compile waifu2x-ncnn-vulkan-macos
-# and the compiled application will be placed at `build/Release/waifu2x-gui.app`
-cd waifu2x-ncnn-vulkan-macos
-xcodebuild
+# replace signing data in Xcode project and build app
 ```
 
 ### Notice
@@ -115,6 +94,8 @@ After the first compilation, if you want to modify this project only, you may se
 ![regenerate_shader](regenerate_shader.png)
 
 ## Speed Comparison between Macs
+
+### TODO: Update with M2 Max
 
 ### Environment 1
 

@@ -1,0 +1,6 @@
+[submodule "waifu2x/ncnn"]
+	path = waifu2x/ncnn
+	url = https://github.com/Tencent/ncnn
+[submodule "waifu2x/waifu2x-ncnn-vulkan"]
+	path = waifu2x/waifu2x-ncnn-vulkan
+	url = https://github.com/nihui/waifu2x-ncnn-vulkan
