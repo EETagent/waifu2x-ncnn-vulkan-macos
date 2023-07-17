@@ -16,8 +16,6 @@
 		402AD32D22711C9800F0A985 /* MoltenVK_icd.json in Resources */ = {isa = PBXBuildFile; fileRef = 402AD32C22711C9700F0A985 /* MoltenVK_icd.json */; };
 		40F888262270F66E00261851 /* DragDropImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F888252270F66E00261851 /* DragDropImageView.m */; };
 		468581462A65232C0049D543 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581452A65232C0049D543 /* libMoltenVK.dylib */; };
-		4685814A2A6529CA0049D543 /* include in Resources */ = {isa = PBXBuildFile; fileRef = 468581492A6529CA0049D543 /* include */; };
-		4685814C2A6529EF0049D543 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 4685814B2A6529EF0049D543 /* lib */; };
 		4685814E2A6535980049D543 /* vulkan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581472A65233F0049D543 /* vulkan.framework */; };
 		4685814F2A6535980049D543 /* vulkan.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 468581472A65233F0049D543 /* vulkan.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		468581502A6535990049D543 /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 468581452A65232C0049D543 /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -333,8 +331,6 @@
 				CCE86B8723FD631D00E73B94 /* models in Resources */,
 				402AD32D22711C9800F0A985 /* MoltenVK_icd.json in Resources */,
 				400697F72270C19600B79110 /* Assets.xcassets in Resources */,
-				4685814A2A6529CA0049D543 /* include in Resources */,
-				4685814C2A6529EF0049D543 /* lib in Resources */,
 				400697FA2270C19600B79110 /* Main.storyboard in Resources */,
 				CC70F70723FEC03D00C9DAE6 /* benchmark in Resources */,
 			);
