@@ -350,8 +350,9 @@ void* save(void* args)
         return nil;
     }
     
-    int gpu_queue_count = ncnn::get_gpu_info(gpuid).compute_queue_count;
-    const_cast<ncnn::GpuInfo&>(ncnn::get_gpu_info(gpuid)).buffer_offset_alignment = 16;
+    int gpu_queue_count = ncnn::get_gpu_info(gpuid).compute_queue_count();
+    // TODO: Fix
+    //const_cast<ncnn::GpuInfo&>(ncnn::get_gpu_info(gpuid)).buffer_offset_alignment = 16;
     jobs_proc = std::min(jobs_proc, gpu_queue_count);
     
     std::vector<path_t> input_files;
@@ -441,7 +442,7 @@ void* save(void* args)
     }
     
     {
-        const auto& device = ncnn::get_gpu_info(gpuid).physical_device;
+        const auto& device = ncnn::get_gpu_info(gpuid).physical_device();
         VkPhysicalDeviceProperties deviceProperties;
         vkGetPhysicalDeviceProperties(device, &deviceProperties);
         
