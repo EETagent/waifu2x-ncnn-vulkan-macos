@@ -90,13 +90,32 @@ which cmake
 ```
 
 ### Notice
-After the first compilation, if you want to modify this project only, you may set those flags in `Build Phases -> Run Script` to `false` to avoid recompile ncnn and regenerate shader.
 
-![regenerate_shader](regenerate_shader.png)
+Double check if all included libraries in Xcode exists
 
 ## Speed Comparison between Macs
 
-### TODO: Update with M2 Max
+### Environment 0
+
+- MacBook Pro 14-inch 2023
+- macOS 14.0 (23A5286i)
+- Apple M2 Max
+- Apple M2 Max 30-core 32 GB
+
+|Model|Image Size|Target Size|Block Size|Total Time(sec)|GPU Memory(MB)|
+|---|---|---|---|---|---|
+|models-cunet|200x200|400x400|400/200/100|0.25/0.23/0.22|240/240/49|
+|models-cunet|400x400|800x800|400/200/100|0.38/0.34/0.36|944/240/49|
+|models-cunet|1000x1000|2000x2000|400/200/100|1.17/1.17/1.28|962/241/49|
+|models-cunet|2000x2000|4000x4000|400/200/100|3.86/4.03/4.48|964/258/50|
+|models-cunet|4000x4000|8000x8000|400/200/100|14.53/15.21/17.23|987/261/67|
+|models-upconv_7_anime_style_art_rgb|200x200|400x400|400/200/100|0.18/0.15/0.15|141/141/33|
+|models-upconv_7_anime_style_art_rgb|400x400|800x800|400/200/100|0.22/0.20/0.21|539/141/33|
+|models-upconv_7_anime_style_art_rgb|1000x1000|2000x2000|400/200/100|0.58/0.59/0.62|541/142/49|
+|models-upconv_7_anime_style_art_rgb|2000x2000|4000x4000|400/200/100|1.89/1.93/2.06|543/159/50|
+|models-upconv_7_anime_style_art_rgb|4000x4000|8000x8000|400/200/100|6.68/6.88/7.43|566/162/51|
+
+noise: 2, scale: 2, gpuid: 0, tta mode: NO
 
 ### Environment 1
 
