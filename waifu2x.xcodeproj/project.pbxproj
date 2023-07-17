@@ -16,9 +16,31 @@
 		402AD32D22711C9800F0A985 /* MoltenVK_icd.json in Resources */ = {isa = PBXBuildFile; fileRef = 402AD32C22711C9700F0A985 /* MoltenVK_icd.json */; };
 		40F888262270F66E00261851 /* DragDropImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F888252270F66E00261851 /* DragDropImageView.m */; };
 		468581462A65232C0049D543 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581452A65232C0049D543 /* libMoltenVK.dylib */; };
-		468581482A65233F0049D543 /* vulkan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581472A65233F0049D543 /* vulkan.framework */; };
 		4685814A2A6529CA0049D543 /* include in Resources */ = {isa = PBXBuildFile; fileRef = 468581492A6529CA0049D543 /* include */; };
 		4685814C2A6529EF0049D543 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 4685814B2A6529EF0049D543 /* lib */; };
+		4685814E2A6535980049D543 /* vulkan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581472A65233F0049D543 /* vulkan.framework */; };
+		4685814F2A6535980049D543 /* vulkan.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 468581472A65233F0049D543 /* vulkan.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		468581502A6535990049D543 /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 468581452A65232C0049D543 /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		4685816C2A653C410049D543 /* libglslang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581552A65365B0049D543 /* libglslang.a */; };
+		4685816D2A653C590049D543 /* libGenericCodeGen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581532A6536590049D543 /* libGenericCodeGen.a */; };
+		4685816E2A653C5B0049D543 /* libMachineIndependent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581572A65365C0049D543 /* libMachineIndependent.a */; };
+		4685816F2A653C630049D543 /* libOGLCompiler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4685815A2A6536600049D543 /* libOGLCompiler.a */; };
+		468581702A653C650049D543 /* libOSDependent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4685815C2A6536610049D543 /* libOSDependent.a */; };
+		468581712A653C660049D543 /* libSPIRV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4685815E2A6536630049D543 /* libSPIRV.a */; };
+		468581722A653C680049D543 /* libncnn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581512A6535E10049D543 /* libncnn.a */; };
+		468581732A653D0F0049D543 /* libSPIRV-Tools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4685816A2A653B3C0049D543 /* libSPIRV-Tools.a */; };
+		468581792A653D7F0049D543 /* libSPIRV-Tools-diff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581762A653D7A0049D543 /* libSPIRV-Tools-diff.a */; };
+		4685817A2A653D7F0049D543 /* libSPIRV-Tools-link.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581742A653D7A0049D543 /* libSPIRV-Tools-link.a */; };
+		4685817B2A653D7F0049D543 /* libSPIRV-Tools-lint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581772A653D7A0049D543 /* libSPIRV-Tools-lint.a */; };
+		4685817C2A653D7F0049D543 /* libSPIRV-Tools-opt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581782A653D7A0049D543 /* libSPIRV-Tools-opt.a */; };
+		4685817D2A653D7F0049D543 /* libSPIRV-Tools-reduce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581752A653D7A0049D543 /* libSPIRV-Tools-reduce.a */; };
+		468581842A653DA30049D543 /* libSPIRV-Tools-link.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4685817E2A653DA30049D543 /* libSPIRV-Tools-link.a */; };
+		468581852A653DA30049D543 /* libSPIRV-Tools-lint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4685817F2A653DA30049D543 /* libSPIRV-Tools-lint.a */; };
+		468581862A653DA30049D543 /* libSPIRV-Tools-diff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581802A653DA30049D543 /* libSPIRV-Tools-diff.a */; };
+		468581872A653DA30049D543 /* libSPIRV-Tools-opt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581812A653DA30049D543 /* libSPIRV-Tools-opt.a */; };
+		468581882A653DA30049D543 /* libSPIRV-Tools-reduce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581822A653DA30049D543 /* libSPIRV-Tools-reduce.a */; };
+		468581892A653DA30049D543 /* libSPIRV-Tools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581832A653DA30049D543 /* libSPIRV-Tools.a */; };
+		4685818B2A653DC80049D543 /* libomp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4685818A2A653DC80049D543 /* libomp.a */; };
 		CC70F70223FE547C00C9DAE6 /* GPUInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = CC70F70123FE547C00C9DAE6 /* GPUInfo.mm */; };
 		CC70F70523FE7D5D00C9DAE6 /* DragDropTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC70F70423FE7D5D00C9DAE6 /* DragDropTableView.m */; };
 		CC70F70723FEC03D00C9DAE6 /* benchmark in Resources */ = {isa = PBXBuildFile; fileRef = CC70F70623FEC03D00C9DAE6 /* benchmark */; };
@@ -33,6 +55,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				468581502A6535990049D543 /* libMoltenVK.dylib in CopyFiles */,
+				4685814F2A6535980049D543 /* vulkan.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +82,26 @@
 		468581472A65233F0049D543 /* vulkan.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vulkan.framework; path = macOS/Frameworks/vulkan.framework; sourceTree = "<group>"; };
 		468581492A6529CA0049D543 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = build/install/include; sourceTree = "<group>"; };
 		4685814B2A6529EF0049D543 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = build/install/lib; sourceTree = "<group>"; };
+		468581512A6535E10049D543 /* libncnn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libncnn.a; path = waifu2x/ncnn/build/install/lib/libncnn.a; sourceTree = "<group>"; };
+		468581532A6536590049D543 /* libGenericCodeGen.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGenericCodeGen.a; path = waifu2x/ncnn/build/install/lib/libGenericCodeGen.a; sourceTree = "<group>"; };
+		468581552A65365B0049D543 /* libglslang.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglslang.a; path = waifu2x/ncnn/build/install/lib/libglslang.a; sourceTree = "<group>"; };
+		468581572A65365C0049D543 /* libMachineIndependent.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMachineIndependent.a; path = waifu2x/ncnn/build/install/lib/libMachineIndependent.a; sourceTree = "<group>"; };
+		4685815A2A6536600049D543 /* libOGLCompiler.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOGLCompiler.a; path = waifu2x/ncnn/build/install/lib/libOGLCompiler.a; sourceTree = "<group>"; };
+		4685815C2A6536610049D543 /* libOSDependent.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOSDependent.a; path = waifu2x/ncnn/build/install/lib/libOSDependent.a; sourceTree = "<group>"; };
+		4685815E2A6536630049D543 /* libSPIRV.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSPIRV.a; path = waifu2x/ncnn/build/install/lib/libSPIRV.a; sourceTree = "<group>"; };
+		4685816A2A653B3C0049D543 /* libSPIRV-Tools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools.a"; path = "waifu2x/VulkanSDK/macOS/lib/libSPIRV-Tools.a"; sourceTree = "<group>"; };
+		468581742A653D7A0049D543 /* libSPIRV-Tools-link.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-link.a"; path = "waifu2x/VulkanSDK/macOS/lib/libSPIRV-Tools-link.a"; sourceTree = "<group>"; };
+		468581752A653D7A0049D543 /* libSPIRV-Tools-reduce.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-reduce.a"; path = "waifu2x/VulkanSDK/macOS/lib/libSPIRV-Tools-reduce.a"; sourceTree = "<group>"; };
+		468581762A653D7A0049D543 /* libSPIRV-Tools-diff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-diff.a"; path = "waifu2x/VulkanSDK/macOS/lib/libSPIRV-Tools-diff.a"; sourceTree = "<group>"; };
+		468581772A653D7A0049D543 /* libSPIRV-Tools-lint.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-lint.a"; path = "waifu2x/VulkanSDK/macOS/lib/libSPIRV-Tools-lint.a"; sourceTree = "<group>"; };
+		468581782A653D7A0049D543 /* libSPIRV-Tools-opt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-opt.a"; path = "waifu2x/VulkanSDK/macOS/lib/libSPIRV-Tools-opt.a"; sourceTree = "<group>"; };
+		4685817E2A653DA30049D543 /* libSPIRV-Tools-link.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-link.a"; path = "macOS/lib/libSPIRV-Tools-link.a"; sourceTree = "<group>"; };
+		4685817F2A653DA30049D543 /* libSPIRV-Tools-lint.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-lint.a"; path = "macOS/lib/libSPIRV-Tools-lint.a"; sourceTree = "<group>"; };
+		468581802A653DA30049D543 /* libSPIRV-Tools-diff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-diff.a"; path = "macOS/lib/libSPIRV-Tools-diff.a"; sourceTree = "<group>"; };
+		468581812A653DA30049D543 /* libSPIRV-Tools-opt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-opt.a"; path = "macOS/lib/libSPIRV-Tools-opt.a"; sourceTree = "<group>"; };
+		468581822A653DA30049D543 /* libSPIRV-Tools-reduce.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-reduce.a"; path = "macOS/lib/libSPIRV-Tools-reduce.a"; sourceTree = "<group>"; };
+		468581832A653DA30049D543 /* libSPIRV-Tools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools.a"; path = "macOS/lib/libSPIRV-Tools.a"; sourceTree = "<group>"; };
+		4685818A2A653DC80049D543 /* libomp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libomp.a; path = ../../../opt/homebrew/Cellar/libomp/16.0.6/lib/libomp.a; sourceTree = "<group>"; };
 		CC70F70023FE547C00C9DAE6 /* GPUInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUInfo.h; sourceTree = "<group>"; };
 		CC70F70123FE547C00C9DAE6 /* GPUInfo.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUInfo.mm; sourceTree = "<group>"; };
 		CC70F70323FE7D5D00C9DAE6 /* DragDropTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDropTableView.h; sourceTree = "<group>"; };
@@ -78,8 +122,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468581852A653DA30049D543 /* libSPIRV-Tools-lint.a in Frameworks */,
+				468581872A653DA30049D543 /* libSPIRV-Tools-opt.a in Frameworks */,
+				4685816C2A653C410049D543 /* libglslang.a in Frameworks */,
+				4685817D2A653D7F0049D543 /* libSPIRV-Tools-reduce.a in Frameworks */,
+				4685816E2A653C5B0049D543 /* libMachineIndependent.a in Frameworks */,
+				468581792A653D7F0049D543 /* libSPIRV-Tools-diff.a in Frameworks */,
+				468581732A653D0F0049D543 /* libSPIRV-Tools.a in Frameworks */,
+				4685817B2A653D7F0049D543 /* libSPIRV-Tools-lint.a in Frameworks */,
+				468581722A653C680049D543 /* libncnn.a in Frameworks */,
+				468581702A653C650049D543 /* libOSDependent.a in Frameworks */,
+				468581842A653DA30049D543 /* libSPIRV-Tools-link.a in Frameworks */,
 				468581462A65232C0049D543 /* libMoltenVK.dylib in Frameworks */,
-				468581482A65233F0049D543 /* vulkan.framework in Frameworks */,
+				468581862A653DA30049D543 /* libSPIRV-Tools-diff.a in Frameworks */,
+				468581712A653C660049D543 /* libSPIRV.a in Frameworks */,
+				4685818B2A653DC80049D543 /* libomp.a in Frameworks */,
+				4685817A2A653D7F0049D543 /* libSPIRV-Tools-link.a in Frameworks */,
+				468581892A653DA30049D543 /* libSPIRV-Tools.a in Frameworks */,
+				4685814E2A6535980049D543 /* vulkan.framework in Frameworks */,
+				468581882A653DA30049D543 /* libSPIRV-Tools-reduce.a in Frameworks */,
+				4685816D2A653C590049D543 /* libGenericCodeGen.a in Frameworks */,
+				4685817C2A653D7F0049D543 /* libSPIRV-Tools-opt.a in Frameworks */,
+				4685816F2A653C630049D543 /* libOGLCompiler.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +153,7 @@
 		400697E42270C19400B79110 = {
 			isa = PBXGroup;
 			children = (
+				4685818A2A653DC80049D543 /* libomp.a */,
 				400697EF2270C19400B79110 /* waifu2x */,
 				400697EE2270C19400B79110 /* Products */,
 				40F468A32271EAAA001098D8 /* Frameworks */,
@@ -134,6 +199,12 @@
 		400698082270C28B00B79110 /* VulkanSDK */ = {
 			isa = PBXGroup;
 			children = (
+				468581802A653DA30049D543 /* libSPIRV-Tools-diff.a */,
+				4685817E2A653DA30049D543 /* libSPIRV-Tools-link.a */,
+				4685817F2A653DA30049D543 /* libSPIRV-Tools-lint.a */,
+				468581812A653DA30049D543 /* libSPIRV-Tools-opt.a */,
+				468581822A653DA30049D543 /* libSPIRV-Tools-reduce.a */,
+				468581832A653DA30049D543 /* libSPIRV-Tools.a */,
 				468581472A65233F0049D543 /* vulkan.framework */,
 				468581452A65232C0049D543 /* libMoltenVK.dylib */,
 				402AD32C22711C9700F0A985 /* MoltenVK_icd.json */,
@@ -144,6 +215,19 @@
 		40F468A32271EAAA001098D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				468581762A653D7A0049D543 /* libSPIRV-Tools-diff.a */,
+				468581742A653D7A0049D543 /* libSPIRV-Tools-link.a */,
+				468581772A653D7A0049D543 /* libSPIRV-Tools-lint.a */,
+				468581782A653D7A0049D543 /* libSPIRV-Tools-opt.a */,
+				468581752A653D7A0049D543 /* libSPIRV-Tools-reduce.a */,
+				4685816A2A653B3C0049D543 /* libSPIRV-Tools.a */,
+				468581512A6535E10049D543 /* libncnn.a */,
+				468581532A6536590049D543 /* libGenericCodeGen.a */,
+				468581552A65365B0049D543 /* libglslang.a */,
+				468581572A65365C0049D543 /* libMachineIndependent.a */,
+				4685815A2A6536600049D543 /* libOGLCompiler.a */,
+				4685815C2A6536610049D543 /* libOSDependent.a */,
+				4685815E2A6536630049D543 /* libSPIRV.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -275,7 +359,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "REGENERATE_SHADER=true\nif (${REGENERATE_SHADER}); then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\n  export VULKAN_SDK=\"${SRCROOT}/waifu2x/VulkanSDK/macOS\"\n  cp -f \"${SRCROOT}/waifu2x/CMakeLists-waifu2x-ncnn-vulkan.txt\" \"${SRCROOT}/waifu2x/waifu2x-ncnn-vulkan/src/CMakeLists.txt\"\n  cd ${SRCROOT}/waifu2x/waifu2x-ncnn-vulkan/src\n  rm -rf build && mkdir -p build && cd build\n  cmake ..\n  make -j`sysctl -n hw.ncpu`\n  cp -f *.h \"${SRCROOT}/waifu2x/waifu2x-ncnn-vulkan/src\"\nfi\n";
+			shellScript = "REGENERATE_SHADER=false\nif (${REGENERATE_SHADER}); then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\n  export VULKAN_SDK=\"${SRCROOT}/waifu2x/VulkanSDK/macOS\"\n  cp -f \"${SRCROOT}/waifu2x/CMakeLists-waifu2x-ncnn-vulkan.txt\" \"${SRCROOT}/waifu2x/waifu2x-ncnn-vulkan/src/CMakeLists.txt\"\n  cd ${SRCROOT}/waifu2x/waifu2x-ncnn-vulkan/src\n  rm -rf build && mkdir -p build && cd build\n  cmake ..\n  make -j`sysctl -n hw.ncpu`\n  cp -f *.h \"${SRCROOT}/waifu2x/waifu2x-ncnn-vulkan/src\"\nfi\n";
 		};
 		4685814D2A6530E80049D543 /* Compile ncnn */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -293,7 +377,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"/opt/homebrew/bin:$PATH\"\nexport VULKAN_SDK=\"${SRCROOT}/waifu2x/VulkanSDK/macOS\"\n\nrm -rf \"${SRCROOT}/waifu2x/ncnn/build\" && mkdir -p \"${SRCROOT}/waifu2x/ncnn/build\" && pushd \"${SRCROOT}/waifu2x/ncnn/build\"\ncmake -DNCNN_BUILD_TOOLS=OFF -DNCNN_VULKAN=ON -DCMAKE_BUILD_TYPE=Release ..\nmake -j`sysctl -n hw.ncpu` && make install\n";
+			shellScript = "REGENERATE_NCNN=false\nif (${REGENERATE_NCNN}); then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\n  export VULKAN_SDK=\"${SRCROOT}/waifu2x/VulkanSDK/macOS\"\n\n  rm -rf \"${SRCROOT}/waifu2x/ncnn/build\" && mkdir -p \"${SRCROOT}/waifu2x/ncnn/build\" && pushd \"${SRCROOT}/waifu2x/ncnn/build\"\n  cmake -DNCNN_BUILD_TOOLS=On -DNCNN_VULKAN=ON -DCMAKE_BUILD_TYPE=Release ..\n  make -j`sysctl -n hw.ncpu` && make install\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -447,6 +531,7 @@
 		400698022270C19600B79110 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -458,7 +543,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/waifu2x",
 					"$(PROJECT_DIR)/waifu2x/VulkanSDK/macOS/Frameworks",
-					"$(PROJECT_DIR)/waifu2x/VulkanSDK/MoltenVK/macOS/framework",
+					"$(PROJECT_DIR)/waifu2x/VulkanSDK/MoltenVK",
 				);
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
@@ -476,11 +561,12 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/libomp/9.0.0/lib,
+					/usr/local/opt/libomp/lib,
 					"$(SRCROOT)/waifu2x/VulkanSDK/macOS/lib",
-					"$(PROJECT_DIR)/waifu2x/VulkanSDK/MoltenVK/macOS/dynamic",
-					"$(PROJECT_DIR)/waifu2x/ncnn/lib",
+					"$(PROJECT_DIR)/waifu2x/ncnn/build/install/lib",
 					"$(PROJECT_DIR)/waifu2x/VulkanSDK/macOS/lib",
+					/opt/homebrew/opt/libomp/lib,
+					/opt/homebrew/Cellar/libomp/16.0.6/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.5;
@@ -493,6 +579,7 @@
 		400698032270C19600B79110 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -504,7 +591,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/waifu2x",
 					"$(PROJECT_DIR)/waifu2x/VulkanSDK/macOS/Frameworks",
-					"$(PROJECT_DIR)/waifu2x/VulkanSDK/MoltenVK/macOS/framework",
+					"$(PROJECT_DIR)/waifu2x/VulkanSDK/MoltenVK",
 				);
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
@@ -522,11 +609,12 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/libomp/9.0.0/lib,
+					/usr/local/opt/libomp/lib,
 					"$(SRCROOT)/waifu2x/VulkanSDK/macOS/lib",
-					"$(PROJECT_DIR)/waifu2x/VulkanSDK/MoltenVK/macOS/dynamic",
-					"$(PROJECT_DIR)/waifu2x/ncnn/lib",
+					"$(PROJECT_DIR)/waifu2x/ncnn/build/install/lib",
 					"$(PROJECT_DIR)/waifu2x/VulkanSDK/macOS/lib",
+					/opt/homebrew/opt/libomp/lib,
+					/opt/homebrew/Cellar/libomp/16.0.6/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.5;
