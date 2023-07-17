@@ -8,6 +8,7 @@ As its long long name suggested.
 - [Icon](https://macosicons.com/#/u/Appleseed)
 
 ### Thanks
+Thanks to [@moeoverflow](https://github.com/moeoverflow) for original repo
 Thanks to [@shincurry](https://github.com/shincurry) for contributing to the UI of this project.
 
 ### Usage
@@ -19,7 +20,7 @@ Thanks to [@shincurry](https://github.com/shincurry) for contributing to the UI 
 4. Click `2x!` and the generated image will be shown at the right image cell
 5. Drag the image from the right image cell to where you want to save it (the filename will be `waifu2x-output.png`)
 
-![screenshot](screenshot-v1.5-single-image.png)
+![screenshot](.github/img/screenshot-v1.6-single-image.png)
 
 #### Multiple Mode
 1. Click `Multiple` on the top tab
@@ -58,13 +59,13 @@ Output
 └── IMG_2213.JPG.png
 ```
 
-![screenshot](screenshot-v1.5-multiple-images.png)
+![screenshot](.github/img/screenshot-v1.6-multiple-images.png)
 
 #### Benchmark
 
 To run benchmark, please click `waifu2x-gui` -> `Benchmark`
 
-![screenshot](screenshot-v1.5-benchmark.png)
+![screenshot](.github/img//screenshot-v1.6-benchmark.png)
 
 ### Build Instructions (macOS arm64)
 
