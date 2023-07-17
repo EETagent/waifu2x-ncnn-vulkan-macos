@@ -373,7 +373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "REGENERATE_NCNN=true\nif (${REGENERATE_NCNN}); then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\n  export VULKAN_SDK=\"${SRCROOT}/waifu2x/VulkanSDK/macOS\"\n\n  rm -rf \"${SRCROOT}/waifu2x/ncnn/build\" && mkdir -p \"${SRCROOT}/waifu2x/ncnn/build\" && pushd \"${SRCROOT}/waifu2x/ncnn/build\"\n  cmake -DMACOSX_DEPLOYMENT_TARGET=\"${MACOSX_DEPLOYMENT_TARGET}\" -DNCNN_BUILD_TOOLS=On -DNCNN_VULKAN=ON -DCMAKE_BUILD_TYPE=Release ..\n  make -j`sysctl -n hw.ncpu` && make install\nfi\n";
+			shellScript = "REGENERATE_NCNN=true\nif (${REGENERATE_NCNN}); then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\n  export VULKAN_SDK=\"${SRCROOT}/waifu2x/VulkanSDK/macOS\"\n\n  rm -rf \"${SRCROOT}/waifu2x/ncnn/build\" && mkdir -p \"${SRCROOT}/waifu2x/ncnn/build\" && pushd \"${SRCROOT}/waifu2x/ncnn/build\"\n  cmake -DMACOSX_DEPLOYMENT_TARGET=\"${MACOSX_DEPLOYMENT_TARGET}\" -DNCNN_BUILD_TOOLS=Off -DNCNN_VULKAN=ON -DCMAKE_BUILD_TYPE=Release ..\n  make -j`sysctl -n hw.ncpu` && make install\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
