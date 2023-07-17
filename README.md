@@ -82,7 +82,7 @@ brew install protobuf libomp
 brew link --force libomp
 
 # clone this repo first
-git clone --recursive --depth=1 https://github.com/BlueCocoa/waifu2x-ncnn-vulkan-macos
+git clone --recursive --depth=1 https://github.com/EETagent/waifu2x-ncnn-vulkan-macos
 
 # check your cmake installation
 which cmake
