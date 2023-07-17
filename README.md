@@ -5,6 +5,7 @@ As its long long name suggested.
 - [waifu2x-ncnn-vulkan](https://github.com/nihui/waifu2x-ncnn-vulkan)
 - [ncnn](https://github.com/Tencent/ncnn)
 - [Vulkan SDK](https://vulkan.lunarg.com/sdk/home)
+- [Icon](https://macosicons.com/#/u/Appleseed)
 
 ### Thanks
 Thanks to [@shincurry](https://github.com/shincurry) for contributing to the UI of this project.
