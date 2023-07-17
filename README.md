@@ -1,5 +1,6 @@
 # waifu2x-ncnn-vulkan-macos
-As its long long name suggested.
+
+Tool for double image magnification using the waifu2x model and Vulkan API.
 
 ### Acknowledgement
 - [waifu2x-ncnn-vulkan](https://github.com/nihui/waifu2x-ncnn-vulkan)
@@ -8,25 +9,26 @@ As its long long name suggested.
 - [Icon](https://macosicons.com/#/u/Appleseed)
 
 ### Thanks
-Thanks to [@moeoverflow](https://github.com/moeoverflow) for original repo
+Thanks to [@moeoverflow](https://github.com/moeoverflow) for the original repo.
+
 Thanks to [@shincurry](https://github.com/shincurry) for contributing to the UI of this project.
 
 ### Usage
 
 #### Single Mode
-1. Click `Single` on the top tab
-2. Drag and drop the image you intentded to upscale to the left image cell
-3. Adjust the settings at the bottom
-4. Click `2x!` and the generated image will be shown at the right image cell
-5. Drag the image from the right image cell to where you want to save it (the filename will be `waifu2x-output.png`)
+1. Click `Single` in the top tab.
+2. Drag the image you want to enlarge to the left cell of the app.
+3. Adjust the settings at the bottom.
+4. Click `2x!` and the generated image will be displayed on the right.
+5. Drag the image from the right cell to the location where you want to save it (the file name will be `waifu2x-output.png`).
 
 ![screenshot](.github/img/screenshot-v1.6-single-image.png)
 
 #### Multiple Mode
-1. Click `Multiple` on the top tab
-2. Drag and drop images or directories to the table. (Only decodable images will be processed)
+1. Click `Multiple` in the top tab
+2. Drag and drop images or directories into the table. (Only decodable images will be processed.)
 3. Adjust the settings at the bottom
-4. Click `2x!` and the generated images will be saved at where them from with an extra `.png` extension. For example,
+4. Click on `2x!` and the generated images will be saved to the location from where they originated with the `.png` extension. For example:
 
 Input
 
@@ -63,22 +65,22 @@ Output
 
 #### Benchmark
 
-To run benchmark, please click `waifu2x-gui` -> `Benchmark`
+To run the benchmark, click on `waifu2x-gui` -> `Benchmark`.
 
 ![screenshot](.github/img//screenshot-v1.6-benchmark.png)
 
 ### Build Instructions (macOS arm64)
 
-Download lastest Vulkan SDK at [https://vulkan.lunarg.com/sdk/home#mac](https://vulkan.lunarg.com/sdk/home#mac).
+Download the lastest Vulkan SDK at [https://vulkan.lunarg.com/sdk/home#mac](https://vulkan.lunarg.com/sdk/home#mac).
 
-At the time of this README.md wrote, 1.3.250.1 was the newest version for macOS.
+At the time of writing this README.md file, the latest version for macOS was 1.3.250.1.
 
 Copy VulkanSDK/1.3.250.1 (or other version) as waifu2x-ncnn-vulkan-macos/waifu2x/VulkanSDK
 
 ```bash
 brew install protobuf libomp
 
-# if you have installed libomp before, you may need to force link it
+# if you have installed libomp before, you may have to forcefully reinstall it
 brew link --force libomp
 
 # clone this repo first
@@ -87,12 +89,17 @@ git clone --recursive --depth=1 https://github.com/EETagent/waifu2x-ncnn-vulkan-
 # check your cmake installation
 which cmake
 
+# copy your VulkanSDK
+
+cp -r /Users/mac/VulkanSDK/1.3.250.1 waifu2x-ncnn-vulkan-macos/waifu2x/VulkanSDK
+
 # replace signing data in Xcode project and build app
+xcodebuild
 ```
 
 ### Notice
 
-Double check if all included libraries in Xcode exists
+Double check if all included libraries in the Xcode exists
 
 ## Speed Comparison between Macs
 
@@ -262,4 +269,3 @@ noise: 2, scale: 2, gpuid: 0, tta mode: NO
 |waifu2x-ncnn-vulkan-macOS|4000x4000|8000x8000|400/200/100|22.92/22.70/24.16|1806/495/147|
 |waifu2x-ncnn-vulkan|4000x4000|8000x8000|400/200/100|11.16/11.29/12.07|1796/498/158|
 |waifu2x-caffe-cui|4000x4000|8000x8000|400/200/100|9.24/9.81/11.16|995/546/436|
-
