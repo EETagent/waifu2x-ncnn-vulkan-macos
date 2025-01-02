@@ -38,7 +38,9 @@
 		468581872A653DA30049D543 /* libSPIRV-Tools-opt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581812A653DA30049D543 /* libSPIRV-Tools-opt.a */; };
 		468581882A653DA30049D543 /* libSPIRV-Tools-reduce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581822A653DA30049D543 /* libSPIRV-Tools-reduce.a */; };
 		468581892A653DA30049D543 /* libSPIRV-Tools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581832A653DA30049D543 /* libSPIRV-Tools.a */; };
-		4685818B2A653DC80049D543 /* libomp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4685818A2A653DC80049D543 /* libomp.a */; };
+		469EF3CB2D26D2E4003F88E1 /* libomp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 469EF3CA2D26D2E4003F88E1 /* libomp.dylib */; };
+		469EF3CC2D26D305003F88E1 /* libomp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 469EF3CA2D26D2E4003F88E1 /* libomp.dylib */; };
+		469EF3CD2D26D305003F88E1 /* libomp.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 469EF3CA2D26D2E4003F88E1 /* libomp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CC70F70223FE547C00C9DAE6 /* GPUInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = CC70F70123FE547C00C9DAE6 /* GPUInfo.mm */; };
 		CC70F70523FE7D5D00C9DAE6 /* DragDropTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC70F70423FE7D5D00C9DAE6 /* DragDropTableView.m */; };
 		CC70F70723FEC03D00C9DAE6 /* benchmark in Resources */ = {isa = PBXBuildFile; fileRef = CC70F70623FEC03D00C9DAE6 /* benchmark */; };
@@ -55,6 +57,7 @@
 			files = (
 				468581502A6535990049D543 /* libMoltenVK.dylib in CopyFiles */,
 				4685814F2A6535980049D543 /* vulkan.framework in CopyFiles */,
+				469EF3CD2D26D305003F88E1 /* libomp.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +102,7 @@
 		468581812A653DA30049D543 /* libSPIRV-Tools-opt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-opt.a"; path = "macOS/lib/libSPIRV-Tools-opt.a"; sourceTree = "<group>"; };
 		468581822A653DA30049D543 /* libSPIRV-Tools-reduce.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools-reduce.a"; path = "macOS/lib/libSPIRV-Tools-reduce.a"; sourceTree = "<group>"; };
 		468581832A653DA30049D543 /* libSPIRV-Tools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSPIRV-Tools.a"; path = "macOS/lib/libSPIRV-Tools.a"; sourceTree = "<group>"; };
-		4685818A2A653DC80049D543 /* libomp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libomp.a; path = ../../../opt/homebrew/Cellar/libomp/16.0.6/lib/libomp.a; sourceTree = "<group>"; };
+		469EF3CA2D26D2E4003F88E1 /* libomp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libomp.dylib; sourceTree = "<group>"; };
 		CC70F70023FE547C00C9DAE6 /* GPUInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUInfo.h; sourceTree = "<group>"; };
 		CC70F70123FE547C00C9DAE6 /* GPUInfo.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUInfo.mm; sourceTree = "<group>"; };
 		CC70F70323FE7D5D00C9DAE6 /* DragDropTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDropTableView.h; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				468581852A653DA30049D543 /* libSPIRV-Tools-lint.a in Frameworks */,
+				469EF3CB2D26D2E4003F88E1 /* libomp.dylib in Frameworks */,
 				468581872A653DA30049D543 /* libSPIRV-Tools-opt.a in Frameworks */,
 				4685816C2A653C410049D543 /* libglslang.a in Frameworks */,
 				4685817D2A653D7F0049D543 /* libSPIRV-Tools-reduce.a in Frameworks */,
@@ -134,12 +138,12 @@
 				468581462A65232C0049D543 /* libMoltenVK.dylib in Frameworks */,
 				468581862A653DA30049D543 /* libSPIRV-Tools-diff.a in Frameworks */,
 				468581712A653C660049D543 /* libSPIRV.a in Frameworks */,
-				4685818B2A653DC80049D543 /* libomp.a in Frameworks */,
 				4685817A2A653D7F0049D543 /* libSPIRV-Tools-link.a in Frameworks */,
 				468581892A653DA30049D543 /* libSPIRV-Tools.a in Frameworks */,
 				4685814E2A6535980049D543 /* vulkan.framework in Frameworks */,
 				468581882A653DA30049D543 /* libSPIRV-Tools-reduce.a in Frameworks */,
 				4685816D2A653C590049D543 /* libGenericCodeGen.a in Frameworks */,
+				469EF3CC2D26D305003F88E1 /* libomp.dylib in Frameworks */,
 				4685817C2A653D7F0049D543 /* libSPIRV-Tools-opt.a in Frameworks */,
 				4685816F2A653C630049D543 /* libOGLCompiler.a in Frameworks */,
 			);
@@ -151,7 +155,6 @@
 		400697E42270C19400B79110 = {
 			isa = PBXGroup;
 			children = (
-				4685818A2A653DC80049D543 /* libomp.a */,
 				400697EF2270C19400B79110 /* waifu2x */,
 				400697EE2270C19400B79110 /* Products */,
 				40F468A32271EAAA001098D8 /* Frameworks */,
@@ -169,6 +172,7 @@
 		400697EF2270C19400B79110 /* waifu2x */ = {
 			isa = PBXGroup;
 			children = (
+				469EF3CA2D26D2E4003F88E1 /* libomp.dylib */,
 				400699792270D21A00B79110 /* waifu2xmac.h */,
 				4006997A2270D21A00B79110 /* waifu2xmac.mm */,
 				40F888242270F66E00261851 /* DragDropImageView.h */,
@@ -562,7 +566,7 @@
 					"$(PROJECT_DIR)/waifu2x/ncnn/build/install/lib",
 					"$(PROJECT_DIR)/waifu2x/VulkanSDK/macOS/lib",
 					/opt/homebrew/opt/libomp/lib,
-					/opt/homebrew/Cellar/libomp/16.0.6/lib,
+					"$(PROJECT_DIR)/waifu2x",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.6;
@@ -610,7 +614,7 @@
 					"$(PROJECT_DIR)/waifu2x/ncnn/build/install/lib",
 					"$(PROJECT_DIR)/waifu2x/VulkanSDK/macOS/lib",
 					/opt/homebrew/opt/libomp/lib,
-					/opt/homebrew/Cellar/libomp/16.0.6/lib,
+					"$(PROJECT_DIR)/waifu2x",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.6;
