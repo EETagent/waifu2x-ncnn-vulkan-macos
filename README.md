@@ -78,7 +78,7 @@ Output
 └── IMG_2213.JPG.png
 ```
 
-![screenshot](.github/img/screenshot-v1.6-multiple-images.webp)
+![screenshot](.github/img/screenshot-v1.7-multiple-images.webp)
 
 #### Benchmark
 
