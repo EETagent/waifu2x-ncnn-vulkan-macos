@@ -27,7 +27,10 @@
 @property (weak) IBOutlet NSTextField *processingJobsParameter;
 @property (weak) IBOutlet NSTextField *savingJobsParameter;
 @property (weak) IBOutlet NSPopUpButton *gpuIDButton;
+
 @property (weak) IBOutlet NSPopUpButton *modelButton;
+@property (weak) IBOutlet NSPopUpButton *backendButton;
+
 @property (weak) IBOutlet NSTextField *vramStaticticsLabel;
 @property (weak) IBOutlet NSTabView *processingModeTab;
 @property (weak) IBOutlet DragDropTableView *multipleImageTableView;

@@ -7,7 +7,10 @@
 //
 
 #import "waifu2xmac.h"
+
 #import "waifu2x-ncnn-vulkan/src/waifu2x.h"
+#import "realsr-ncnn-vulkan/src/realsr.h"
+
 #import <unistd.h>
 #import <algorithm>
 #import <vector>
@@ -118,11 +121,9 @@ void* load(void* args)
         int h;
         int c;
 
-#if _WIN32
-        pixeldata = wic_decode_image(imagepath.c_str(), &w, &h, &c);
-#else // _WIN32
+
         pixeldata = stbi_load(imagepath.c_str(), &w, &h, &c, 3);
-#endif // _WIN32
+
         if (pixeldata)
         {
             Task v;
@@ -137,11 +138,8 @@ void* load(void* args)
         }
         else
         {
-#if _WIN32
-            fwprintf(stderr, L"decode image %ls failed\n", imagepath.c_str());
-#else // _WIN32
+
             fprintf(stderr, "decode image %s failed\n", imagepath.c_str());
-#endif // _WIN32
         }
     }
 
@@ -152,23 +150,30 @@ class ProcThreadParams
 {
 public:
     const Waifu2x* waifu2x;
+    const RealSR* realsr;
 };
 
 void* proc(void* args)
 {
     const ProcThreadParams* ptp = (const ProcThreadParams*)args;
+    
     const Waifu2x* waifu2x = ptp->waifu2x;
+    const RealSR* realsr = ptp->realsr;
 
     for (;;)
     {
         Task v;
-
+        
         toproc.get(v);
-
+        
         if (v.id == -233)
             break;
-
-        waifu2x->process(v.inimage, v.outimage);
+        
+        if (waifu2x != nullptr) {
+            waifu2x->process(v.inimage, v.outimage);
+        } else if (realsr != nullptr) {
+            realsr->process(v.inimage, v.outimage);
+        }
 
         tosave.put(v);
     }
@@ -199,36 +204,20 @@ void* save(void* args)
         // free input pixel data
         {
             unsigned char* pixeldata = (unsigned char*)v.inimage.data;
-#if _WIN32
-            free(pixeldata);
-#else
             stbi_image_free(pixeldata);
-#endif
         }
 
-#if _WIN32
-        int success = wic_encode_image(v.outpath.c_str(), v.outimage.w, v.outimage.h, 3, v.outimage.data);
-#else
         int success = stbi_write_png(v.outpath.c_str(), v.outimage.w, v.outimage.h, 3, v.outimage.data, 0);
-#endif
         if (success)
         {
             if (verbose)
             {
-#if _WIN32
-                fwprintf(stderr, L"%ls -> %ls done\n", v.inpath.c_str(), v.outpath.c_str());
-#else
                 fprintf(stderr, "%s -> %s done\n", v.inpath.c_str(), v.outpath.c_str());
-#endif
             }
         }
         else
         {
-#if _WIN32
-            fwprintf(stderr, L"encode image %ls failed\n", v.outpath.c_str());
-#else
             fprintf(stderr, "encode image %s failed\n", v.outpath.c_str());
-#endif
         }
     }
 
@@ -241,6 +230,7 @@ void* save(void* args)
             output:(NSArray<NSString *> *)outputpaths
              noise:(int)noise
              scale:(int)scale
+             backend:(Backend)backend
           tilesize:(int)tilesize
              model:(NSString *)model
              gpuid:(int)gpuid
@@ -265,9 +255,13 @@ void* save(void* args)
         return nil;
     }
 
-    if (scale < 1 || scale > 2)
+    if (backend == BackendWaifu2X && (scale < 1 || scale > 2))
     {
         if (cb) cb(1, total, NSLocalizedString(@"Error: supported scale is 1 or 2", @""));
+        return nil;
+    }
+    else if (backend == BackendRealSR && scale != 4) {
+        if (cb) cb(1, total, NSLocalizedString(@"Error: supported scale is 4", @""));
         return nil;
     }
 
@@ -295,44 +289,62 @@ void* save(void* args)
     if (cb) cb(2, total, NSLocalizedString(@"Prepare models...", @""));
     
     int prepadding = 0;
-    if ([model isEqualToString:@"models-cunet"]) {
-        if (noise == -1)
-        {
-            prepadding = 18;
+
+    if (backend == BackendWaifu2X) {
+        if ([model isEqualToString:@"models-cunet"]) {
+            if (noise == -1)
+            {
+                prepadding = 18;
+            }
+            else if (scale == 1)
+            {
+                prepadding = 28;
+            }
+            else if (scale == 2)
+            {
+                prepadding = 18;
+            }
+        } else if ([model isEqualToString:@"models-upconv_7_anime_style_art_rgb"]) {
+            prepadding = 7;
+        } else if ([model isEqualToString:@"models-upconv_7_photo"]) {
+            prepadding = 7;
+        } else {
+            if (cb) cb(3, total, NSLocalizedString(@"[ERROR] No such model", @""));
+            return nil;
         }
-        else if (scale == 1)
-        {
-            prepadding = 28;
+    } else if (backend == BackendRealSR) {
+        if ([model isEqualToString:@"models-DF2K_JPEG"] || [model isEqualToString:@"models-DF2K"]) {
+            prepadding = 10;
+        } else {
+            if (cb) cb(3, total, NSLocalizedString(@"[ERROR] No such model", @""));
+            return nil;
         }
-        else if (scale == 2)
-        {
-            prepadding = 18;
-        }
-    } else if ([model isEqualToString:@"models-upconv_7_anime_style_art_rgb"]) {
-        prepadding = 7;
-    } else if ([model isEqualToString:@"models-upconv_7_photo"]) {
-        prepadding = 7;
-    } else {
-        if (cb) cb(3, total, NSLocalizedString(@"[ERROR] No such model", @""));
-        return nil;
     }
     
     NSString * parampath = nil;
     NSString * modelpath = nil;
-    if (noise == -1)
-    {
-        parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models/%@/scale2.0x_model.param", model] ofType:nil];
-        modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models/%@/scale2.0x_model.bin", model] ofType:nil];
-    }
-    else if (scale == 1)
-    {
-        parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models/%@/noise%d_model.param", model, noise] ofType:nil];
-        modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models/%@/noise%d_model.bin", model, noise] ofType:nil];
-    }
-    else if (scale == 2)
-    {
-        parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models/%@/noise%d_scale2.0x_model.param", model, noise] ofType:nil];
-        modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models/%@/noise%d_scale2.0x_model.bin", model, noise] ofType:nil];
+    
+    if (backend == BackendWaifu2X) {
+        if (noise == -1)
+        {
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/scale2.0x_model.param", model] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/scale2.0x_model.bin", model] ofType:nil];
+        }
+        else if (scale == 1)
+        {
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/noise%d_model.param", model, noise] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/noise%d_model.bin", model, noise] ofType:nil];
+        }
+        else if (scale == 2)
+        {
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/noise%d_scale2.0x_model.param", model, noise] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/noise%d_scale2.0x_model.bin", model, noise] ofType:nil];
+        }
+    } else if (backend == BackendRealSR) {
+        if (scale == 4) {
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_realsr/%@/x%d.param", model, scale] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_realsr/%@/x%d.bin", model, scale] ofType:nil];
+        }
     }
     
     if (cb) cb(3, total, NSLocalizedString(@"Creating GPU instance...", @""));
@@ -364,15 +376,33 @@ void* save(void* args)
     }
     
     {
-        Waifu2x waifu2x(gpuid, enable_tta_mode);
+        Waifu2x *waifu2x = nullptr;
+        RealSR *realsr = nullptr;
+
+        if (backend == BackendWaifu2X) {
+            waifu2x = new Waifu2x(gpuid, enable_tta_mode);
+        } else if (backend == BackendRealSR) {
+            realsr = new RealSR(gpuid, enable_tta_mode);
+        }
+
 
         if (cb) cb(4, total, NSLocalizedString(@"Loading models...", @""));
-        waifu2x.load([parampath UTF8String], [modelpath UTF8String]);
 
-        waifu2x.noise = noise;
-        waifu2x.scale = scale;
-        waifu2x.tilesize = tilesize;
-        waifu2x.prepadding = prepadding;
+        if (waifu2x != nullptr) {
+            waifu2x->load([parampath UTF8String], [modelpath UTF8String]);
+
+            waifu2x->noise = noise;
+            waifu2x->scale = scale;
+            waifu2x->tilesize = tilesize;
+            waifu2x->prepadding = prepadding;
+        } else if (realsr != nullptr) {
+            realsr->load([parampath UTF8String], [modelpath UTF8String]);
+            //realsr->noise = noise;
+            realsr->scale = scale;
+            realsr->tilesize = tilesize;
+            realsr->prepadding = prepadding;
+        }
+
         
         // main routine
         {
@@ -389,7 +419,9 @@ void* save(void* args)
             
             // waifu2x proc
             ProcThreadParams ptp;
-            ptp.waifu2x = &waifu2x;
+            
+            ptp.waifu2x = waifu2x;
+            ptp.realsr = realsr;
 
             std::vector<ncnn::Thread*> proc_threads(jobs_proc);
             for (int i=0; i<jobs_proc; i++)
@@ -438,6 +470,13 @@ void* save(void* args)
                 save_threads[i]->join();
                 delete save_threads[i];
             }
+        }
+        
+        if (waifu2x != nullptr) {
+            delete waifu2x;
+        }
+        if (realsr != nullptr) {
+            delete realsr;
         }
     }
     

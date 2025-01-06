@@ -10,6 +10,11 @@
 #import <AppKit/AppKit.h>
 #import "GPUInfo.h"
 
+typedef NS_ENUM(NSInteger, Backend) {
+    BackendWaifu2X,
+    BackendRealSR
+};
+
 typedef void (^waifu2xProgressBlock)(int current, int total, NSString * description);
 
 @interface waifu2xmac : NSObject
@@ -18,6 +23,7 @@ typedef void (^waifu2xProgressBlock)(int current, int total, NSString * descript
             output:(NSArray<NSString *> *)outputpaths
              noise:(int)noise
              scale:(int)scale
+             backend:(Backend)backend
           tilesize:(int)tilesize
              model:(NSString *)model
              gpuid:(int)gpuid

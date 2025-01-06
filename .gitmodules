@@ -4,3 +4,6 @@
 [submodule "waifu2x/waifu2x-ncnn-vulkan"]
 	path = waifu2x/waifu2x-ncnn-vulkan
 	url = https://github.com/nihui/waifu2x-ncnn-vulkan
+[submodule "waifu2x/realsr-ncnn-vulkan"]
+	path = waifu2x/realsr-ncnn-vulkan
+	url = https://github.com/nihui/realsr-ncnn-vulkan.git

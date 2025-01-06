@@ -15,6 +15,9 @@
 		4006997B2270D21A00B79110 /* waifu2xmac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4006997A2270D21A00B79110 /* waifu2xmac.mm */; };
 		402AD32D22711C9800F0A985 /* MoltenVK_icd.json in Resources */ = {isa = PBXBuildFile; fileRef = 402AD32C22711C9700F0A985 /* MoltenVK_icd.json */; };
 		40F888262270F66E00261851 /* DragDropImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F888252270F66E00261851 /* DragDropImageView.m */; };
+		46444CDD2D2C4323000C9F06 /* realsr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46444CB82D2C4323000C9F06 /* realsr.cpp */; };
+		46444CE52D2C4484000C9F06 /* models_waifu2x in Resources */ = {isa = PBXBuildFile; fileRef = CCE86B8623FD631D00E73B94 /* models_waifu2x */; };
+		46444D022D2C4548000C9F06 /* models_realsr in Resources */ = {isa = PBXBuildFile; fileRef = 46444D012D2C4540000C9F06 /* models_realsr */; };
 		4678016A2D26DB2500F6B0FE /* libomp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 467801662D26D95300F6B0FE /* libomp.dylib */; };
 		4678016B2D26DB2500F6B0FE /* libomp.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 467801662D26D95300F6B0FE /* libomp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		468581462A65232C0049D543 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 468581452A65232C0049D543 /* libMoltenVK.dylib */; };
@@ -44,7 +47,6 @@
 		CC70F70523FE7D5D00C9DAE6 /* DragDropTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC70F70423FE7D5D00C9DAE6 /* DragDropTableView.m */; };
 		CC70F70723FEC03D00C9DAE6 /* benchmark in Resources */ = {isa = PBXBuildFile; fileRef = CC70F70623FEC03D00C9DAE6 /* benchmark */; };
 		CCE86B8423FD630600E73B94 /* waifu2x.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCE86B5223FD630500E73B94 /* waifu2x.cpp */; };
-		CCE86B8723FD631D00E73B94 /* models in Resources */ = {isa = PBXBuildFile; fileRef = CCE86B8623FD631D00E73B94 /* models */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +80,12 @@
 		402AD32C22711C9700F0A985 /* MoltenVK_icd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MoltenVK_icd.json; path = waifu2x/MoltenVK_icd.json; sourceTree = SOURCE_ROOT; };
 		40F888242270F66E00261851 /* DragDropImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDropImageView.h; sourceTree = "<group>"; };
 		40F888252270F66E00261851 /* DragDropImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragDropImageView.m; sourceTree = "<group>"; };
+		46444CB72D2C4323000C9F06 /* realsr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = realsr.h; sourceTree = "<group>"; };
+		46444CB82D2C4323000C9F06 /* realsr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = realsr.cpp; sourceTree = "<group>"; };
+		46444D012D2C4540000C9F06 /* models_realsr */ = {isa = PBXFileReference; lastKnownFileType = folder; path = models_realsr; sourceTree = "<group>"; };
+		46444D042D2C478C000C9F06 /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		46444D052D2C478C000C9F06 /* stb_image_write.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
+		46444D062D2C479C000C9F06 /* filesystem_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filesystem_utils.h; sourceTree = "<group>"; };
 		467801612D26D95300F6B0FE /* omp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = omp.h; sourceTree = "<group>"; };
 		467801622D26D95300F6B0FE /* omp-tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "omp-tools.h"; sourceTree = "<group>"; };
 		467801632D26D95300F6B0FE /* ompt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ompt.h; sourceTree = "<group>"; };
@@ -111,14 +119,9 @@
 		CC70F70323FE7D5D00C9DAE6 /* DragDropTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDropTableView.h; sourceTree = "<group>"; };
 		CC70F70423FE7D5D00C9DAE6 /* DragDropTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragDropTableView.m; sourceTree = "<group>"; };
 		CC70F70623FEC03D00C9DAE6 /* benchmark */ = {isa = PBXFileReference; lastKnownFileType = folder; path = benchmark; sourceTree = "<group>"; };
-		CCE86B4B23FD630500E73B94 /* stb_image_write.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
-		CCE86B4C23FD630500E73B94 /* win32dirent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win32dirent.h; sourceTree = "<group>"; };
-		CCE86B4D23FD630500E73B94 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
-		CCE86B4E23FD630500E73B94 /* wic_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wic_image.h; sourceTree = "<group>"; };
-		CCE86B4F23FD630500E73B94 /* filesystem_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem_utils.h; sourceTree = "<group>"; };
 		CCE86B5123FD630500E73B94 /* waifu2x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = waifu2x.h; sourceTree = "<group>"; };
 		CCE86B5223FD630500E73B94 /* waifu2x.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = waifu2x.cpp; sourceTree = "<group>"; };
-		CCE86B8623FD631D00E73B94 /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = models; sourceTree = "<group>"; };
+		CCE86B8623FD631D00E73B94 /* models_waifu2x */ = {isa = PBXFileReference; lastKnownFileType = folder; path = models_waifu2x; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +197,7 @@
 				400697FE2270C19600B79110 /* waifu2x.entitlements */,
 				467801672D26D95300F6B0FE /* libomp */,
 				CCE86B1423FD630500E73B94 /* waifu2x-ncnn-vulkan */,
+				46444CC62D2C4323000C9F06 /* realsr-ncnn-vulkan */,
 				CCE86B0423FD60C700E73B94 /* ncnn */,
 				400698082270C28B00B79110 /* VulkanSDK */,
 			);
@@ -236,6 +240,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		46444CC22D2C4323000C9F06 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				46444CB72D2C4323000C9F06 /* realsr.h */,
+				46444CB82D2C4323000C9F06 /* realsr.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		46444CC62D2C4323000C9F06 /* realsr-ncnn-vulkan */ = {
+			isa = PBXGroup;
+			children = (
+				46444D012D2C4540000C9F06 /* models_realsr */,
+				46444CC22D2C4323000C9F06 /* src */,
+			);
+			path = "realsr-ncnn-vulkan";
+			sourceTree = "<group>";
+		};
 		467801652D26D95300F6B0FE /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +290,7 @@
 		CCE86B1423FD630500E73B94 /* waifu2x-ncnn-vulkan */ = {
 			isa = PBXGroup;
 			children = (
-				CCE86B8623FD631D00E73B94 /* models */,
+				CCE86B8623FD631D00E73B94 /* models_waifu2x */,
 				CCE86B4823FD630500E73B94 /* src */,
 			);
 			path = "waifu2x-ncnn-vulkan";
@@ -277,11 +299,9 @@
 		CCE86B4823FD630500E73B94 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				CCE86B4B23FD630500E73B94 /* stb_image_write.h */,
-				CCE86B4C23FD630500E73B94 /* win32dirent.h */,
-				CCE86B4D23FD630500E73B94 /* stb_image.h */,
-				CCE86B4E23FD630500E73B94 /* wic_image.h */,
-				CCE86B4F23FD630500E73B94 /* filesystem_utils.h */,
+				46444D062D2C479C000C9F06 /* filesystem_utils.h */,
+				46444D042D2C478C000C9F06 /* stb_image.h */,
+				46444D052D2C478C000C9F06 /* stb_image_write.h */,
 				CCE86B5123FD630500E73B94 /* waifu2x.h */,
 				CCE86B5223FD630500E73B94 /* waifu2x.cpp */,
 			);
@@ -297,6 +317,7 @@
 			buildPhases = (
 				4685814D2A6530E80049D543 /* Compile ncnn */,
 				400699322270CC7500B79110 /* Compile waifu2x-ncnn-vulkan */,
+				46444D032D2C458A000C9F06 /* Compile realsr-ncnn-vulkan */,
 				400697E92270C19400B79110 /* Sources */,
 				400697EA2270C19400B79110 /* Frameworks */,
 				400697EB2270C19400B79110 /* Resources */,
@@ -354,7 +375,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCE86B8723FD631D00E73B94 /* models in Resources */,
+				46444CE52D2C4484000C9F06 /* models_waifu2x in Resources */,
+				46444D022D2C4548000C9F06 /* models_realsr in Resources */,
 				402AD32D22711C9800F0A985 /* MoltenVK_icd.json in Resources */,
 				400697F72270C19600B79110 /* Assets.xcassets in Resources */,
 				400697FA2270C19600B79110 /* Main.storyboard in Resources */,
@@ -383,6 +405,24 @@
 			shellPath = /bin/sh;
 			shellScript = "REGENERATE_SHADER=true\nif (${REGENERATE_SHADER}); then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\n  export VULKAN_SDK=\"${SRCROOT}/waifu2x/VulkanSDK/macOS\"\n  cp -f \"${SRCROOT}/waifu2x/CMakeLists-waifu2x-ncnn-vulkan.txt\" \"${SRCROOT}/waifu2x/waifu2x-ncnn-vulkan/src/CMakeLists.txt\"\n  cd ${SRCROOT}/waifu2x/waifu2x-ncnn-vulkan/src\n  rm -rf build && mkdir -p build && cd build\n  cmake -DMACOSX_DEPLOYMENT_TARGET=\"${MACOSX_DEPLOYMENT_TARGET}\" ..\n  make -j`sysctl -n hw.ncpu`\n  cp -f *.h \"${SRCROOT}/waifu2x/waifu2x-ncnn-vulkan/src\"\nfi\n";
 		};
+		46444D032D2C458A000C9F06 /* Compile realsr-ncnn-vulkan */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile realsr-ncnn-vulkan";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "REGENERATE_SHADER=true\nif (${REGENERATE_SHADER}); then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\n  export VULKAN_SDK=\"${SRCROOT}/waifu2x/VulkanSDK/macOS\"\n  cp -f \"${SRCROOT}/waifu2x/CMakeLists-realsr-ncnn-vulkan.txt\" \"${SRCROOT}/waifu2x/realsr-ncnn-vulkan/src/CMakeLists.txt\"\n  cd ${SRCROOT}/waifu2x/realsr-ncnn-vulkan/src\n  rm -rf build && mkdir -p build && cd build\n  cmake -DMACOSX_DEPLOYMENT_TARGET=\"${MACOSX_DEPLOYMENT_TARGET}\" ..\n  make -j`sysctl -n hw.ncpu`\n  cp -f *.h \"${SRCROOT}/waifu2x/realsr-ncnn-vulkan/src\"\nfi\n";
+		};
 		4685814D2A6530E80049D543 /* Compile ncnn */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -408,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46444CDD2D2C4323000C9F06 /* realsr.cpp in Sources */,
 				CC70F70223FE547C00C9DAE6 /* GPUInfo.mm in Sources */,
 				400697F52270C19400B79110 /* ViewController.mm in Sources */,
 				4006997B2270D21A00B79110 /* waifu2xmac.mm in Sources */,

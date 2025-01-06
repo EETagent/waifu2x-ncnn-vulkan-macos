@@ -57,6 +57,12 @@
     [self.outputImageView setAllowDrag:YES];
     [self.outputImageView setImageScaling:NSImageScaleProportionallyUpOrDown];
     
+    [self.backendButton removeAllItems];
+    [self.backendButton addItemWithTitle:@"Waifu2X"];
+    [self.backendButton addItemWithTitle:@"RealSR"];
+
+    [self.backendButton setAction:@selector(changeBackend:)];
+
     [self.modelButton removeAllItems];
     [self.modelButton addItemWithTitle:@"cunet"];
     [self.modelButton addItemWithTitle:@"upconv_7_anime_style_art_rgb"];
@@ -75,6 +81,23 @@
     [self.multipleImageTableView setDropDelegate:self];
     
     [self.processingModeTab setDelegate:self];
+}
+
+- (void)changeBackend:(NSPopUpButton *)sender {    
+    if ([[sender titleOfSelectedItem] isEqualToString:@"Waifu2X"]) {
+        [self.modelButton removeAllItems];
+        [self.modelButton addItemWithTitle:@"cunet"];
+        [self.modelButton addItemWithTitle:@"upconv_7_anime_style_art_rgb"];
+        [self.modelButton addItemWithTitle:@"upconv_7_photo"];
+
+        [self.scaleParameter setIntValue:2];
+    } else {
+        [self.modelButton removeAllItems];
+        [self.modelButton addItemWithTitle:@"DF2K"];
+        [self.modelButton addItemWithTitle:@"DF2K_JPEG"];
+
+        [self.scaleParameter setIntValue:4];
+    }
 }
 
 - (void)changeGPU:(NSPopUpButton *)sender {
@@ -230,6 +253,9 @@
     int noise = self.noiseParameter.intValue;
     int scale = self.scaleParameter.intValue;
     int gpuID = self.gpus[self.gpuIDButton.indexOfSelectedItem].deviceID;
+
+    Backend backend = [self.backendButton indexOfSelectedItem] == 0 ? BackendWaifu2X : BackendRealSR;
+
     BOOL enableTTAMode = self.ttaModeButton.state == NSControlStateValueOn;
     NSArray * models = @[@"models-cunet", @"models-upconv_7_anime_style_art_rgb"];
     NSArray<NSNumber *> * tilesizes = @[@(400), @(200), @(100)];
@@ -265,6 +291,7 @@
                                output:outputfiles
                                 noise:noise
                                 scale:scale
+                                backend:backend
                              tilesize:tsize
                                 model:model
                                 gpuid:gpuID
@@ -351,6 +378,8 @@
 - (IBAction)waifu2x:(NSButton *)sender {
     int noise = self.noiseParameter.intValue;
     int scale = self.scaleParameter.intValue;
+    Backend backend = [self.backendButton indexOfSelectedItem] == 0 ? BackendWaifu2X : BackendRealSR;
+
     int tilesize = self.tilesizeParameter.intValue;
     int load_jobs = self.loadingJobsParameter.intValue;
     int proc_jobs = self.processingJobsParameter.intValue;
@@ -395,6 +424,7 @@
                                       output:outputpaths
                                        noise:noise
                                        scale:scale
+                                       backend:backend
                                     tilesize:tilesize
                                        model:model
                                        gpuid:gpuID
