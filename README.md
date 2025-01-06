@@ -1,9 +1,26 @@
-# waifu2x-ncnn-vulkan-macos
+<h1 align="center"><br><img width="175" alt="Waifu2X Icon" src="https://github.com/user-attachments/assets/bccc76b2-3d6c-428d-a599-7ce7f58e6976" /></h1>
 
-Tool for double image magnification using the waifu2x model and Vulkan API.
+<h3 align="center">Waifu2X</h3>
+<p align="center">
+    Tool for image magnification using the waifu2x/realsr model and Vulkan API.
+    <br />
+    <strong>Version: </strong>1.7
+    <br />
+    <br />
+    <img src="https://img.shields.io/badge/macOS-12-purple.svg">
+    <img src="https://img.shields.io/badge/Objective-C-gold.svg">
+    <img src="https://img.shields.io/badge/Vulkan-🌋-red.svg">
+    <img src="https://img.shields.io/badge/Apple-Silicon-black.svg">
+    <img src="https://img.shields.io/badge/Intel-blue.svg">
+    <br />
+    <br />
+  </p>
+</p>
+
 
 ### Acknowledgement
 - [waifu2x-ncnn-vulkan](https://github.com/nihui/waifu2x-ncnn-vulkan)
+- [realsr-ncnn-vulkan](https://github.com/nihui/realsr-ncnn-vulkan)
 - [ncnn](https://github.com/Tencent/ncnn)
 - [Vulkan SDK](https://vulkan.lunarg.com/sdk/home)
 - [Icon](https://macosicons.com/#/u/Appleseed)
