@@ -590,7 +590,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.6;
-				PRODUCT_BUNDLE_IDENTIFIER = "moe.cocoaneko.waifu2x-gui";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.EETagent.Waifu2X;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
@@ -636,7 +636,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.6;
-				PRODUCT_BUNDLE_IDENTIFIER = "moe.cocoaneko.waifu2x-gui";
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.EETagent.Waifu2X;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
