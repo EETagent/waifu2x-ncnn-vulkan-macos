@@ -39,7 +39,7 @@ Thanks to [@shincurry](https://github.com/shincurry) for contributing to the UI 
 4. Click `2x!` and the generated image will be displayed on the right.
 5. Drag the image from the right cell to the location where you want to save it (the file name will be `waifu2x-output.png`).
 
-![screenshot](.github/img/screenshot-v1.6-single-image.png)
+![screenshot](.github/img/screenshot-v1.7-single-image.webp)
 
 #### Multiple Mode
 1. Click `Multiple` in the top tab
@@ -78,7 +78,7 @@ Output
 └── IMG_2213.JPG.png
 ```
 
-![screenshot](.github/img/screenshot-v1.6-multiple-images.png)
+![screenshot](.github/img/screenshot-v1.6-multiple-images.webp)
 
 #### Benchmark
 
@@ -90,9 +90,9 @@ To run the benchmark, click on `waifu2x-gui` -> `Benchmark`.
 
 Download the lastest Vulkan SDK at [https://vulkan.lunarg.com/sdk/home#mac](https://vulkan.lunarg.com/sdk/home#mac).
 
-At the time of writing this README.md file, the latest version for macOS was 1.3.250.1.
+At the time of writing this README.md file, the latest version for macOS was 1.3.296.0
 
-Copy VulkanSDK/1.3.250.1 (or other version) as waifu2x-ncnn-vulkan-macos/waifu2x/VulkanSDK
+Copy VulkanSDK/1.3.296.0 (or other version) as waifu2x-ncnn-vulkan-macos/waifu2x/VulkanSDK
 
 ```bash
 brew install protobuf libomp
