@@ -88,35 +88,29 @@ To run the benchmark, click on `waifu2x-gui` -> `Benchmark`.
 
 ### Build Instructions (macOS arm64)
 
-Download the lastest Vulkan SDK at [https://vulkan.lunarg.com/sdk/home#mac](https://vulkan.lunarg.com/sdk/home#mac).
-
-At the time of writing this README.md file, the latest version for macOS was 1.3.296.0
-
-Copy VulkanSDK/1.3.296.0 (or other version) as waifu2x-ncnn-vulkan-macos/waifu2x/VulkanSDK
-
 ```bash
-brew install protobuf libomp
+brew install tuist cmake git-lfs
 
-# if you have installed libomp before, you may have to forcefully reinstall it
-brew link --force libomp
 
 # clone this repo first
 git clone --recursive --depth=1 https://github.com/EETagent/waifu2x-ncnn-vulkan-macos
 
+# change directory
+cd waifu2x-ncnn-vulkan-macos
+
+# git lfs
+git lfs install
+git lfs pull
+
 # check your cmake installation
 which cmake
 
-# copy your VulkanSDK
+# generate
+tuist generate
 
-cp -r /Users/mac/VulkanSDK/1.3.250.1 waifu2x-ncnn-vulkan-macos/waifu2x/VulkanSDK
-
-# replace signing data in Xcode project and build app
-xcodebuild
+# build
+tuist build --configuration Release --build-output-path build
 ```
-
-### Notice
-
-Double check if all included libraries in the Xcode exists
 
 ## Speed Comparison between Macs
 

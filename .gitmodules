@@ -1,9 +1,6 @@
-[submodule "waifu2x/ncnn"]
-	path = waifu2x/ncnn
-	url = https://github.com/Tencent/ncnn
-[submodule "waifu2x/waifu2x-ncnn-vulkan"]
-	path = waifu2x/waifu2x-ncnn-vulkan
-	url = https://github.com/nihui/waifu2x-ncnn-vulkan
-[submodule "waifu2x/realsr-ncnn-vulkan"]
-	path = waifu2x/realsr-ncnn-vulkan
+[submodule "Waifu2X/backend/waifu2x-ncnn-vulkan"]
+	path = Waifu2X/backend/waifu2x-ncnn-vulkan
+	url = https://github.com/nihui/waifu2x-ncnn-vulkan.git
+[submodule "Waifu2X/backend/realsr-ncnn-vulkan"]
+	path = Waifu2X/backend/realsr-ncnn-vulkan
 	url = https://github.com/nihui/realsr-ncnn-vulkan.git
