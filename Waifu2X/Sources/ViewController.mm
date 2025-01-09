@@ -404,15 +404,16 @@
             return;
         }
         
-        char tmp_filename_buf[32] = {'\0'};
-        const char * template_filename = "/tmp/isrm-XXXXXX";
-        strncpy(tmp_filename_buf, template_filename, strlen(template_filename));
-        int err = mkstemp(tmp_filename_buf);
-        if (err < 1) {
-            [self.statusLabel setStringValue:[NSString stringWithFormat:@"Error: cannot create tmp file: %s", strerror(errno)]];
+        NSString *tempDir = NSTemporaryDirectory();
+        NSString *filename = [[NSUUID UUID] UUIDString];
+        NSString *tempPath = [tempDir stringByAppendingPathComponent:filename];
+        
+        if (!tempPath) {
+            [self.statusLabel setStringValue:@"Error: cannot create temporary path"];
             return;
         }
-        outputpaths = @[[NSString stringWithFormat:@"%s.png", tmp_filename_buf]];
+        
+        outputpaths = @[[tempPath stringByAppendingString:@".png"]];
         inputpaths = @[self.inputImagePath];
     }
     
