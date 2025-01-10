@@ -14,6 +14,8 @@
 #import "GPUInfo.h"
 #import <ncnn/ncnn/gpu.h>
 
+#import "DockProgress/DockProgress.h"
+
 @interface ViewController() {
     VkInstance gpuInstance;
 }
@@ -438,7 +440,14 @@
                                     progress:^(int current, int total, NSString *description) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.statusLabel setStringValue:[NSString stringWithFormat:@"[%d/%d] %@", current, total, description]];
-                [self.waifu2xProgress setDoubleValue:((double)current)/total * 100];
+                double percentDouble  = ((double)current)/total;
+                double percent = percentDouble * 100;
+                if (percent == 100) {
+                    [DockProgress hideProgress];
+                } else {
+                    [DockProgress setProgress:percentDouble];
+                }
+                [self.waifu2xProgress setDoubleValue:percent];
             });
         }];
 
