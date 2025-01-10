@@ -458,6 +458,65 @@
     });
 }
 
+- (BOOL)validateMenuItem:(NSMenuItem *)item {
+    if ([item action] == @selector(saveDocument:) && ![self.outputImageView image]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)saveDocument:(id)sender {
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel setAllowedFileTypes:@[@"png", @"jpg", @"jpeg"]];
+    [savePanel setNameFieldStringValue:@"waifu2x-output.png"];
+    [savePanel setTitle:@"Uložit obrázek"];
+    [savePanel setMessage:@"Vyberte umístění pro uložení obrázku"];
+    
+    NSString *downloadPath = [NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject];
+    [savePanel setDirectoryURL:[NSURL fileURLWithPath:downloadPath]];
+    
+    [savePanel beginWithCompletionHandler:^(NSModalResponse result) {
+        if (result == NSModalResponseOK) {
+            NSURL *fileURL = [savePanel URL];
+            NSImage *image = [self.outputImageView image];
+            NSData *imageData;
+            
+            if ([[fileURL pathExtension] isEqualToString:@"png"]) {
+                imageData = [image TIFFRepresentation];
+                NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
+                imageData = [imageRep representationUsingType:NSBitmapImageFileTypePNG properties:@{}];
+            } else {
+                imageData = [image TIFFRepresentation];
+                NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
+                imageData = [imageRep representationUsingType:NSBitmapImageFileTypeJPEG properties:@{}];
+            }
+            
+            [imageData writeToURL:fileURL atomically:YES];
+        }
+    }];
+}
+
+- (IBAction)openDocument:(id)sender {
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setAllowedFileTypes:@[@"png", @"jpg", @"jpeg"]];
+    [openPanel setTitle:@"Otevřít obrázek"];
+    [openPanel setMessage:@"Vyberte obrázek pro zpracování"];
+    
+    NSString *downloadPath = [NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject];
+    [openPanel setDirectoryURL:[NSURL fileURLWithPath:downloadPath]];
+    
+    [openPanel beginWithCompletionHandler:^(NSModalResponse result) {
+        if (result == NSModalResponseOK) {
+            NSURL *fileURL = [openPanel URL];
+            NSImage *image = [[NSImage alloc] initWithContentsOfURL:fileURL];
+            if (image) {
+                [self.inputImageView setImage:image];
+                self.inputImagePath = [fileURL path];
+            }
+        }
+    }];
+}
+
 #pragma mark - DragDropImageViewDelegate
 
 - (void)dropComplete:(NSString *)filePath {

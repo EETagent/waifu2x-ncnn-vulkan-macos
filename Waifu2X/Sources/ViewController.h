@@ -14,6 +14,8 @@
 @interface ViewController : NSViewController<DragDropImageViewDelegate, DragDropTableViewDelegate, NSTableViewDelegate, NSTableViewDataSource, NSTabViewDelegate>
 
 - (IBAction)waifu2x:(id)sender;
+- (void) saveDocument:(id) sender;
+- (void) openDocument:(id) sender;
 - (void)benchmark;
 
 @property (weak) IBOutlet DragDropImageView *inputImageView;
