@@ -12,8 +12,11 @@ let project = Project(
             infoPlist: .file(path: "Waifu2X/Info.plist"),
             sources: ["Waifu2X/Sources/**", "Waifu2X/backend/realsr-ncnn-vulkan/src/realsr.cpp", "Waifu2X/backend/waifu2x-ncnn-vulkan/src/waifu2x.cpp"],
             resources: [
-                .folderReference(path: "Waifu2X/backend/waifu2x-ncnn-vulkan/models_waifu2x"),
-                .folderReference(path: "Waifu2X/backend/realsr-ncnn-vulkan/models_realsr"),
+                .folderReference(path: "Waifu2X/backend/waifu2x-ncnn-vulkan/models/models-cunet"),
+                .folderReference(path: "Waifu2X/backend/waifu2x-ncnn-vulkan/models/models-upconv_7_anime_style_art_rgb"),
+                .folderReference(path: "Waifu2X/backend/waifu2x-ncnn-vulkan/models/models-upconv_7_photo"),
+                .folderReference(path: "Waifu2X/backend/realsr-ncnn-vulkan/models/models-DF2K"),
+                .folderReference(path: "Waifu2X/backend/realsr-ncnn-vulkan/models/models-DF2K_JPEG"),
                 "Waifu2X/Resources/**",
 
             ],
@@ -25,27 +28,17 @@ let project = Project(
                     zip -r "Waifu2X.zip" "Waifu2X.app"
                     """,
                     name: "ZIP",
-                    outputPaths: ["Waifu2X.zip"]
+                    outputPaths: ["${BUILT_PRODUCTS_DIR}/Waifu2X.zip"]
                 ),
                 .post(
                     script: """
                     export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
                     cd "${BUILT_PRODUCTS_DIR}"
                     rm -rf "Waifu2X.dmg"
-                    create-dmg \\
-                    --volname Waifu2X \\
-                    --background "${SRCROOT}/Waifu2X/dmg/dmg-background.tiff" \
-                    --window-pos 200 120 \\
-                    --window-size 660 420 \\
-                    --text-size 12 \\
-                    --icon-size 160 \\
-                    --icon Waifu2X.app 180 170 \\
-                    --app-drop-link 480 170 \
-                    Waifu2X.dmg \
-                    Waifu2X.app
+                    create-dmg --volname Waifu2X --background "${SRCROOT}/Waifu2X/dmg/dmg-background.tiff" --window-pos 200 120 --window-size 660 420 --text-size 12 --icon-size 160 --icon Waifu2X.app 180 170 --app-drop-link 480 170 Waifu2X.dmg Waifu2X.app
                     """,
                     name: "DMG",
-                    outputPaths: ["Waifu2X.dmg"]
+                    outputPaths: ["${BUILT_PRODUCTS_DIR}/Waifu2X.dmg"]
                 ),
             ] : [],
             dependencies: [
@@ -90,13 +83,6 @@ let project = Project(
                 ),
                 .pre(
                     script: """
-                    if [ -d "Waifu2X/backend/waifu2x-ncnn-vulkan/models" ]; then
-                        mv Waifu2X/backend/waifu2x-ncnn-vulkan/models Waifu2X/backend/waifu2x-ncnn-vulkan/models_waifu2x
-                    fi
-                    """, name: "Models"
-                ),
-                .pre(
-                    script: """
                     sed -i '' $'s/#include "net.h"/#include <ncnn\\/ncnn\\/net.h>/g\ns/#include "gpu.h"/#include <ncnn\\/ncnn\\/gpu.h>/g\ns/#include "layer.h"/#include <ncnn\\/ncnn\\/layer.h>/g' Waifu2X/backend/waifu2x-ncnn-vulkan/src/waifu2x.h
                     """, name: "Ncnn"
                 )
@@ -122,13 +108,6 @@ let project = Project(
                     make generate-spirv 
                     """,
                     name: "ConfigureCMake"
-                ),
-                .pre(
-                    script: """
-                    if [ -d "Waifu2X/backend/realsr-ncnn-vulkan/models" ]; then
-                        mv Waifu2X/backend/realsr-ncnn-vulkan/models Waifu2X/backend/realsr-ncnn-vulkan/models_realsr
-                    fi
-                    """, name: "Models"
                 ),
                 .pre(
                     script: """

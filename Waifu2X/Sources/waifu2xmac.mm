@@ -328,23 +328,23 @@ void* save(void* args)
     if (backend == BackendWaifu2X) {
         if (noise == -1)
         {
-            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/scale2.0x_model.param", model] ofType:nil];
-            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/scale2.0x_model.bin", model] ofType:nil];
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/scale2.0x_model.param", model] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/scale2.0x_model.bin", model] ofType:nil];
         }
         else if (scale == 1)
         {
-            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/noise%d_model.param", model, noise] ofType:nil];
-            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/noise%d_model.bin", model, noise] ofType:nil];
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/noise%d_model.param", model, noise] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/noise%d_model.bin", model, noise] ofType:nil];
         }
         else if (scale == 2)
         {
-            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/noise%d_scale2.0x_model.param", model, noise] ofType:nil];
-            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_waifu2x/%@/noise%d_scale2.0x_model.bin", model, noise] ofType:nil];
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/noise%d_scale2.0x_model.param", model, noise] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/noise%d_scale2.0x_model.bin", model, noise] ofType:nil];
         }
     } else if (backend == BackendRealSR) {
         if (scale == 4) {
-            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_realsr/%@/x%d.param", model, scale] ofType:nil];
-            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"models_realsr/%@/x%d.bin", model, scale] ofType:nil];
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/x%d.param", model, scale] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/x%d.bin", model, scale] ofType:nil];
         }
     }
     

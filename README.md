@@ -93,18 +93,10 @@ brew install tuist cmake git-lfs
 
 
 # clone this repo first
-git clone --recursive --depth=1 https://github.com/EETagent/waifu2x-ncnn-vulkan-macos
+git clone --recurse-submodules --depth=1 https://github.com/EETagent/waifu2x-ncnn-vulkan-macos
 
 # change directory
 cd waifu2x-ncnn-vulkan-macos
-
-# rename models
-mv Waifu2X/backend/realsr-ncnn-vulkan/models Waifu2X/backend/realsr-ncnn-vulkan/models_realsr
-mv Waifu2X/backend/waifu2x-ncnn-vulkan/models Waifu2X/backend/waifu2x-ncnn-vulkan/models_waifu2x
-
-# git lfs
-git lfs install
-git lfs pull
 
 # check your cmake installation
 which cmake

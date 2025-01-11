@@ -2,8 +2,8 @@ name: Build waifu2x! 🖼️
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - master
 
 env:
   XCBUILD_PATH: "build/Release"
@@ -17,9 +17,10 @@ jobs:
       uses: actions/checkout@v4
       with:
         lfs: true
+        submodules: true
         
     - name: Install Dependencies 🚀
-      run: brew install create-dmg tuist
+      run: brew install tuist create-dmg
       env:
         HOMEBREW_NO_INSTALL_CLEANUP: 1
         HOMEBREW_NO_AUTO_UPDATE: 1
@@ -37,10 +38,10 @@ jobs:
         
     - name: Generate project 🚀
       #run: TUIST_BUNDLE=true tuist generate
-      run: tuist generate
+      run: TUIST_BUNDLE=true tuist generate
 
     - name: Release Build 🔨
-      run: tuist build --configuration Release --build-output-path build
+      run: tuist build --configuration Release --build-output-path build 
 
     #- name: Check Send signature
     #  run: codesign --verify -vvvv --deep --strict "${XCBUILD_PATH}/${MACOS_APP_ARTIFACT}"
@@ -48,6 +49,7 @@ jobs:
     - name: Create Disk Image 💿
       run: |
         mkdir Artifacts
+        
         cp ${XCBUILD_PATH}/*.dmg Artifacts
         cp ${XCBUILD_PATH}/*.zip Artifacts
 
