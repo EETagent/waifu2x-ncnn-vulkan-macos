@@ -10,13 +10,16 @@ let project = Project(
             bundleId: "com.github.EETagent.Waifu2X",
             deploymentTargets: .macOS("12.4"),
             infoPlist: .file(path: "Waifu2X/Info.plist"),
-            sources: ["Waifu2X/Sources/**", "Waifu2X/backend/realsr-ncnn-vulkan/src/realsr.cpp", "Waifu2X/backend/waifu2x-ncnn-vulkan/src/waifu2x.cpp"],
+            sources: ["Waifu2X/Sources/**", "Waifu2X/backend/realsr-ncnn-vulkan/src/realsr.cpp", "Waifu2X/backend/waifu2x-ncnn-vulkan/src/waifu2x.cpp", "Waifu2X/backend/realesrgan-ncnn-vulkan/src/realesrgan.cpp"],
             resources: [
                 .folderReference(path: "Waifu2X/backend/waifu2x-ncnn-vulkan/models/models-cunet"),
                 .folderReference(path: "Waifu2X/backend/waifu2x-ncnn-vulkan/models/models-upconv_7_anime_style_art_rgb"),
                 .folderReference(path: "Waifu2X/backend/waifu2x-ncnn-vulkan/models/models-upconv_7_photo"),
                 .folderReference(path: "Waifu2X/backend/realsr-ncnn-vulkan/models/models-DF2K"),
                 .folderReference(path: "Waifu2X/backend/realsr-ncnn-vulkan/models/models-DF2K_JPEG"),
+                .folderReference(path: "Waifu2X/backend/realesrgan-ncnn-vulkan/models/models-realesr-animevideov3"),
+                .folderReference(path: "Waifu2X/backend/realesrgan-ncnn-vulkan/models/models-realesrgan-x4plus"),
+                .folderReference(path: "Waifu2X/backend/realesrgan-ncnn-vulkan/models/models-realesrgan-x4plus-anime"),
                 "Waifu2X/Resources/**",
 
             ],
@@ -51,6 +54,7 @@ let project = Project(
                 
                 .target(name: "waifu2x-ncnn-vulkan"),
                 .target(name: "realsr-ncnn-vulkan"),
+                .target(name: "realesrgan-ncnn-vulkan"),
                 //.target(name: "waifu2x-ncnn-vulkan", status: LinkingStatus.none),
                 //.target(name: "realsr-ncnn-vulkan", status: LinkingStatus.none),
             ],
@@ -112,6 +116,35 @@ let project = Project(
                 .pre(
                     script: """
                     sed -i '' $'s/#include "net.h"/#include <ncnn\\/ncnn\\/net.h>/g\ns/#include "gpu.h"/#include <ncnn\\/ncnn\\/gpu.h>/g\ns/#include "layer.h"/#include <ncnn\\/ncnn\\/layer.h>/g' Waifu2X/backend/realsr-ncnn-vulkan/src/realsr.h
+                    """, name: "Ncnn"
+                )
+            ]
+        ),
+        .target(
+            name: "realesrgan-ncnn-vulkan",
+            destinations: .macOS,
+            product: .staticFramework,
+            bundleId: "com.github.EETagent.realesrgan-ncnn-vulkan",
+            deploymentTargets: .macOS("12.4"),
+            infoPlist: .default,
+            headers: .headers(
+                public: ["Waifu2X/backend/realesrgan-ncnn-vulkan/src/realesrgan.h"]
+            ),
+            scripts: [
+                .pre(
+                    script: """
+                    export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
+                    cp Waifu2X/backend/realsr-ncnn-vulkan/src/generate_shader_comp_header.cmake Waifu2X/backend/realesrgan-ncnn-vulkan/src/generate_shader_comp_header.cmake
+                    cp Waifu2X/backend/CMakeLists.realesrgan.txt Waifu2X/backend/realesrgan-ncnn-vulkan/src/CMakeLists.txt
+                    cd Waifu2X/backend/realesrgan-ncnn-vulkan/src
+                    cmake .
+                    make generate-spirv 
+                    """,
+                    name: "ConfigureCMake"
+                ),
+                .pre(
+                    script: """
+                    sed -i '' $'s/#include "net.h"/#include <ncnn\\/ncnn\\/net.h>/g\ns/#include "gpu.h"/#include <ncnn\\/ncnn\\/gpu.h>/g\ns/#include "layer.h"/#include <ncnn\\/ncnn\\/layer.h>/g' Waifu2X/backend/realesrgan-ncnn-vulkan/src/realesrgan.h
                     """, name: "Ncnn"
                 )
             ]

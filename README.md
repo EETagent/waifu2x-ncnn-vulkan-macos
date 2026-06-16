@@ -101,6 +101,31 @@ cd waifu2x-ncnn-vulkan-macos
 # check your cmake installation
 which cmake
 
+# Download realesrgan-ncnn-vulkan release build and extract models to submodule
+
+To use Real-ESRGAN, download the release models and place them in the correct folder structure:
+
+1. Download the compiled models package from the [Real-ESRGAN Releases page](https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan/releases) (e.g., `realesrgan-ncnn-vulkan-20220424-macos.zip`).
+2. Extract the model files and organize them into the following directories under `Waifu2X/backend/realesrgan-ncnn-vulkan/models/`:
+
+* **`models-realesr-animevideov3/`**
+  - `realesr-animevideov3-x2.bin`
+  - `realesr-animevideov3-x2.param`
+  - `realesr-animevideov3-x3.bin`
+  - `realesr-animevideov3-x3.param`
+  - `realesr-animevideov3-x4.bin`
+  - `realesr-animevideov3-x4.param`
+
+* **`models-realesrgan-x4plus/`**
+  - `realesrgan-x4plus.bin`
+  - `realesrgan-x4plus.param`
+
+* **`models-realesrgan-x4plus-anime/`**
+  - `realesrgan-x4plus-anime.bin`
+  - `realesrgan-x4plus-anime.param`
+
+Ensure the directory structure matches the folder references configured in `Project.swift`.
+
 # generate
 tuist generate
 

@@ -10,6 +10,7 @@
 
 #import "waifu2x.h"
 #import "realsr.h"
+#import "realesrgan.h"
 
 #import <unistd.h>
 #import <algorithm>
@@ -152,6 +153,7 @@ class ProcThreadParams
 public:
     const Waifu2x* waifu2x;
     const RealSR* realsr;
+    const RealESRGAN* realesrgan;
 };
 
 void* proc(void* args)
@@ -160,6 +162,7 @@ void* proc(void* args)
     
     const Waifu2x* waifu2x = ptp->waifu2x;
     const RealSR* realsr = ptp->realsr;
+    const RealESRGAN* realesrgan = ptp->realesrgan;
 
     for (;;)
     {
@@ -174,6 +177,8 @@ void* proc(void* args)
             waifu2x->process(v.inimage, v.outimage);
         } else if (realsr != nullptr) {
             realsr->process(v.inimage, v.outimage);
+        } else if (realesrgan != nullptr) {
+            realesrgan->process(v.inimage, v.outimage);
         }
 
         tosave.put(v);
@@ -265,6 +270,17 @@ void* save(void* args)
         if (cb) cb(1, total, NSLocalizedString(@"Error: supported scale is 4", @""));
         return nil;
     }
+    else if (backend == BackendRealESRGAN) {
+        if ([model isEqualToString:@"models-realesr-animevideov3"]) {
+            if (scale < 2 || scale > 4) {
+                if (cb) cb(1, total, NSLocalizedString(@"Error: supported scale is 2, 3, or 4", @""));
+                return nil;
+            }
+        } else if (scale != 4) {
+            if (cb) cb(1, total, NSLocalizedString(@"Error: supported scale is 4", @""));
+            return nil;
+        }
+    }
 
     if (tilesize < 32)
     {
@@ -320,6 +336,15 @@ void* save(void* args)
             if (cb) cb(3, total, NSLocalizedString(@"[ERROR] No such model", @""));
             return nil;
         }
+    } else if (backend == BackendRealESRGAN) {
+        if ([model isEqualToString:@"models-realesr-animevideov3"] ||
+            [model isEqualToString:@"models-realesrgan-x4plus"] ||
+            [model isEqualToString:@"models-realesrgan-x4plus-anime"]) {
+            prepadding = 10;
+        } else {
+            if (cb) cb(3, total, NSLocalizedString(@"[ERROR] No such model", @""));
+            return nil;
+        }
     }
     
     NSString * parampath = nil;
@@ -345,6 +370,15 @@ void* save(void* args)
         if (scale == 4) {
             parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/x%d.param", model, scale] ofType:nil];
             modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/x%d.bin", model, scale] ofType:nil];
+        }
+    } else if (backend == BackendRealESRGAN) {
+        NSString *modelBaseName = [model substringFromIndex:7]; // strip "models-" prefix
+        if ([model isEqualToString:@"models-realesr-animevideov3"]) {
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/%@-x%d.param", model, modelBaseName, scale] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/%@-x%d.bin", model, modelBaseName, scale] ofType:nil];
+        } else {
+            parampath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/%@.param", model, modelBaseName] ofType:nil];
+            modelpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@/%@.bin", model, modelBaseName] ofType:nil];
         }
     }
     
@@ -379,11 +413,14 @@ void* save(void* args)
     {
         Waifu2x *waifu2x = nullptr;
         RealSR *realsr = nullptr;
+        RealESRGAN *realesrgan = nullptr;
 
         if (backend == BackendWaifu2X) {
             waifu2x = new Waifu2x(gpuid, enable_tta_mode);
         } else if (backend == BackendRealSR) {
             realsr = new RealSR(gpuid, enable_tta_mode);
+        } else if (backend == BackendRealESRGAN) {
+            realesrgan = new RealESRGAN(gpuid, enable_tta_mode);
         }
 
 
@@ -402,6 +439,11 @@ void* save(void* args)
             realsr->scale = scale;
             realsr->tilesize = tilesize;
             realsr->prepadding = prepadding;
+        } else if (realesrgan != nullptr) {
+            realesrgan->load([parampath UTF8String], [modelpath UTF8String]);
+            realesrgan->scale = scale;
+            realesrgan->tilesize = tilesize;
+            realesrgan->prepadding = prepadding;
         }
 
         
@@ -423,6 +465,7 @@ void* save(void* args)
             
             ptp.waifu2x = waifu2x;
             ptp.realsr = realsr;
+            ptp.realesrgan = realesrgan;
 
             std::vector<ncnn::Thread*> proc_threads(jobs_proc);
             for (int i=0; i<jobs_proc; i++)
@@ -478,6 +521,9 @@ void* save(void* args)
         }
         if (realsr != nullptr) {
             delete realsr;
+        }
+        if (realesrgan != nullptr) {
+            delete realesrgan;
         }
     }
     

@@ -12,7 +12,8 @@
 
 typedef NS_ENUM(NSInteger, Backend) {
     BackendWaifu2X,
-    BackendRealSR
+    BackendRealSR,
+    BackendRealESRGAN
 };
 
 typedef void (^waifu2xProgressBlock)(int current, int total, NSString * description);

@@ -62,6 +62,7 @@
     [self.backendButton removeAllItems];
     [self.backendButton addItemWithTitle:@"Waifu2X"];
     [self.backendButton addItemWithTitle:@"RealSR"];
+    [self.backendButton addItemWithTitle:@"RealESRGAN"];
 
     [self.backendButton setAction:@selector(changeBackend:)];
 
@@ -93,10 +94,17 @@
         [self.modelButton addItemWithTitle:@"upconv_7_photo"];
 
         [self.scaleParameter setIntValue:2];
-    } else {
+    } else if ([[sender titleOfSelectedItem] isEqualToString:@"RealSR"]) {
         [self.modelButton removeAllItems];
         [self.modelButton addItemWithTitle:@"DF2K"];
         [self.modelButton addItemWithTitle:@"DF2K_JPEG"];
+
+        [self.scaleParameter setIntValue:4];
+    } else if ([[sender titleOfSelectedItem] isEqualToString:@"RealESRGAN"]) {
+        [self.modelButton removeAllItems];
+        [self.modelButton addItemWithTitle:@"realesr-animevideov3"];
+        [self.modelButton addItemWithTitle:@"realesrgan-x4plus"];
+        [self.modelButton addItemWithTitle:@"realesrgan-x4plus-anime"];
 
         [self.scaleParameter setIntValue:4];
     }
@@ -256,7 +264,8 @@
     int scale = self.scaleParameter.intValue;
     int gpuID = self.gpus[self.gpuIDButton.indexOfSelectedItem].deviceID;
 
-    Backend backend = [self.backendButton indexOfSelectedItem] == 0 ? BackendWaifu2X : BackendRealSR;
+    NSInteger backendIndex = [self.backendButton indexOfSelectedItem];
+    Backend backend = backendIndex == 0 ? BackendWaifu2X : (backendIndex == 1 ? BackendRealSR : BackendRealESRGAN);
 
     BOOL enableTTAMode = self.ttaModeButton.state == NSControlStateValueOn;
     NSArray * models = @[@"models-cunet", @"models-upconv_7_anime_style_art_rgb"];
@@ -380,7 +389,8 @@
 - (IBAction)waifu2x:(NSButton *)sender {
     int noise = self.noiseParameter.intValue;
     int scale = self.scaleParameter.intValue;
-    Backend backend = [self.backendButton indexOfSelectedItem] == 0 ? BackendWaifu2X : BackendRealSR;
+    NSInteger backendIndex = [self.backendButton indexOfSelectedItem];
+    Backend backend = backendIndex == 0 ? BackendWaifu2X : (backendIndex == 1 ? BackendRealSR : BackendRealESRGAN);
 
     int tilesize = self.tilesizeParameter.intValue;
     int load_jobs = self.loadingJobsParameter.intValue;
