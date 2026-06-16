@@ -42,6 +42,7 @@
 @synthesize processingModeTab;
 @synthesize multipleImageTableView;
 @synthesize ttaModeButton;
+@synthesize saveDownloadsButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -430,6 +431,7 @@
     }
     
     [self allowUserIntereaction:NO];
+    [self.saveDownloadsButton setEnabled:NO];
     self.isProcessing = YES;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -471,6 +473,7 @@
                 }
 
                 [self.outputImageView setImage:result];
+                [self.saveDownloadsButton setEnabled:YES];
                 unlink(outputpaths[0].UTF8String);
             }
         });
@@ -482,6 +485,31 @@
         return NO;
     }
     return YES;
+}
+
+- (IBAction)saveToDownloads:(NSButton *)sender {
+    NSImage *image = [self.outputImageView image];
+    if (!image) {
+        return;
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"];
+    NSString *timestamp = [formatter stringFromDate:[NSDate date]];
+    NSString *filename = [NSString stringWithFormat:@"waifu2x_%@.png", timestamp];
+    
+    NSString *downloadPath = [NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *fullPath = [downloadPath stringByAppendingPathComponent:filename];
+    
+    NSData *imageData = [image TIFFRepresentation];
+    NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
+    NSData *pngData = [imageRep representationUsingType:NSBitmapImageFileTypePNG properties:@{}];
+    
+    if ([pngData writeToFile:fullPath atomically:YES]) {
+        [self.statusLabel setStringValue:[NSString stringWithFormat:@"Saved to Downloads: %@", filename]];
+    } else {
+        [self.statusLabel setStringValue:@"Error: Failed to save to Downloads"];
+    }
 }
 
 - (void)saveDocument:(id)sender {

@@ -14,6 +14,7 @@
 @interface ViewController : NSViewController<DragDropImageViewDelegate, DragDropTableViewDelegate, NSTableViewDelegate, NSTableViewDataSource, NSTabViewDelegate>
 
 - (IBAction)waifu2x:(id)sender;
+- (IBAction)saveToDownloads:(id)sender;
 - (void) saveDocument:(id) sender;
 - (void) openDocument:(id) sender;
 - (void)benchmark;
@@ -38,6 +39,7 @@
 @property (weak) IBOutlet DragDropTableView *multipleImageTableView;
 @property (weak) IBOutlet NSButton *startButton;
 @property (weak) IBOutlet NSButton *ttaModeButton;
+@property (weak) IBOutlet NSButton *saveDownloadsButton;
 
 @end
 
