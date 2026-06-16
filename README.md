@@ -21,6 +21,7 @@
 ### Acknowledgement
 - [waifu2x-ncnn-vulkan](https://github.com/nihui/waifu2x-ncnn-vulkan)
 - [realsr-ncnn-vulkan](https://github.com/nihui/realsr-ncnn-vulkan)
+- [real-esrgan-ncnn-vulkan](https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan.git)
 - [ncnn](https://github.com/Tencent/ncnn)
 - [Vulkan SDK](https://vulkan.lunarg.com/sdk/home)
 - [Icon](https://macosicons.com/#/u/Appleseed)
